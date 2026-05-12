@@ -732,6 +732,43 @@ h3 {
   margin-bottom: 0;
 }
 
+.specialty-list,
+.cert-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.specialty-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.specialty-list li {
+  background: var(--ink);
+  border-radius: 2px;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+
+.cert-list {
+  border-top: 1px solid var(--line);
+  margin-top: 16px;
+  padding-top: 14px;
+}
+
+.cert-list li {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+
 .testimonials-section {
   border-bottom: 1px solid var(--line);
 }
