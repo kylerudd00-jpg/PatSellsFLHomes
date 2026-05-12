@@ -1099,12 +1099,13 @@ h3 {
   overflow: hidden;
   padding: 28px 24px 24px;
   text-decoration: none;
-  transition: transform 280ms ease, box-shadow 280ms ease;
+  transition: background-image 320ms ease, transform 280ms ease, box-shadow 280ms ease;
 }
 
 .area-card:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-  transform: translateY(-4px);
+  background-image: linear-gradient(to top, rgba(10,20,18,0.45) 0%, rgba(10,20,18,0.05) 60%), var(--bg);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  transform: translateY(-5px);
 }
 
 .area-card h3 {
@@ -1337,10 +1338,10 @@ h3 {
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(18px);
   transition:
-    opacity 720ms ease,
-    transform 720ms ease;
+    opacity 380ms ease,
+    transform 380ms ease;
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
@@ -1351,13 +1352,13 @@ h3 {
 }
 
 .js .image-reveal {
-  clip-path: inset(8% 0 8% 0);
+  clip-path: inset(4% 0 4% 0);
   opacity: 0;
-  transform: scale(0.985);
+  transform: scale(0.99);
   transition:
-    clip-path 850ms ease,
-    opacity 760ms ease,
-    transform 850ms ease;
+    clip-path 420ms ease,
+    opacity 380ms ease,
+    transform 420ms ease;
 }
 
 .js .image-reveal.is-visible {
