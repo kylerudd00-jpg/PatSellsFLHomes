@@ -1335,6 +1335,13 @@ h3 {
 
 /* ─── Map ─── */
 
+.areas-map-intro {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  margin-top: clamp(28px, 3vw, 44px);
+}
+
 #areas-map {
   border: 1px solid var(--line);
   border-radius: 4px;

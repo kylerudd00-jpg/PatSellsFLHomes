@@ -25,6 +25,8 @@ const closeNav = () => {
   navMenu.classList.remove("is-open");
   navToggle.setAttribute("aria-expanded", "false");
   navToggle.setAttribute("aria-label", "Open navigation");
+  const icon = navToggle.querySelector("[data-lucide]");
+  if (icon) { icon.setAttribute("data-lucide", "menu"); window.lucide?.createIcons(); }
 };
 
 if (navToggle && navMenu) {
@@ -32,6 +34,8 @@ if (navToggle && navMenu) {
     const isOpen = navMenu.classList.toggle("is-open");
     navToggle.setAttribute("aria-expanded", String(isOpen));
     navToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    const icon = navToggle.querySelector("[data-lucide]");
+    if (icon) { icon.setAttribute("data-lucide", isOpen ? "x" : "menu"); window.lucide?.createIcons(); }
   });
 
   navMenu.querySelectorAll("a").forEach((link) => {
