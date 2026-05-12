@@ -1511,6 +1511,11 @@ h3 {
   margin-bottom: 0;
 }
 
+.footer-license {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
 .js .reveal {
   opacity: 0;
   transform: translateY(18px);
