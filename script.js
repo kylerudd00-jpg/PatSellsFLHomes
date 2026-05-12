@@ -332,8 +332,8 @@ if (valuationForm) {
 const mapEl = document.getElementById("areas-map");
 if (mapEl && typeof L !== "undefined") {
   const map = L.map("areas-map", {
-    center: [26.46, -80.09],
-    zoom: 11,
+    center: [26.65, -80.15],
+    zoom: 10,
     scrollWheelZoom: false,
     zoomControl: true,
   });
@@ -357,6 +357,9 @@ if (mapEl && typeof L !== "undefined") {
     { name: "Gulf Stream",  coords: [26.5038, -80.0481], price: "$3M+ typical", url: "gulf-stream.html" },
     { name: "Highland Beach",coords:[26.4087, -80.0723], price: "$700K median", url: "highland-beach.html" },
     { name: "Palm Beach County", coords: [26.7153, -80.0534], price: "County-wide", url: "palm-beach-county.html" },
+    { name: "Lake Worth Beach", coords: [26.6198, -80.0590], price: "~$380K median", url: "lake-worth.html" },
+    { name: "Wellington",       coords: [26.6590, -80.2689], price: "~$550K median", url: "wellington.html" },
+    { name: "Jupiter",          coords: [26.9342, -80.0942], price: "~$650K median", url: "jupiter.html" },
   ];
 
   areas.forEach(({ name, coords, price, url }) => {

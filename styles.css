@@ -747,8 +747,8 @@ h3 {
 
 .testimonials-grid {
   display: grid;
-  gap: clamp(24px, 5vw, 56px);
-  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 3vw, 36px);
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 40px;
 }
 
@@ -1432,8 +1432,8 @@ h3 {
   background: var(--paper);
   clip-path: polygon(0 28px, 100% 0, 100% 100%, 0 100%);
   color: var(--ink);
-  padding: clamp(82px, 11vw, 128px) 30px;
-  padding-top: calc(clamp(82px, 11vw, 128px) + 28px);
+  padding: clamp(48px, 7vw, 80px) 30px;
+  padding-top: calc(clamp(48px, 7vw, 80px) + 28px);
 }
 
 .contact-inner {
