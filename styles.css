@@ -365,6 +365,19 @@ select {
   text-transform: uppercase;
 }
 
+.section-kicker::after {
+  background: currentColor;
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 14px;
+  opacity: 0.62;
+  transform: scaleX(var(--section-progress, 0));
+  transform-origin: left;
+  transition: transform 90ms linear;
+  width: 64px;
+}
+
 .hero .eyebrow {
   color: rgba(255, 255, 255, 0.74);
   animation: fadeUp 760ms 120ms ease both;
@@ -584,17 +597,23 @@ h3 {
   box-shadow: var(--shadow);
   overflow: hidden;
   position: relative;
+  --image-scale: 1.06;
 }
 
 .feature-image-wrap img {
   height: 100%;
   object-fit: cover;
-  transition: transform 900ms ease;
+  object-position: center calc(50% + var(--scroll-drift, 0px));
+  transform: scale(var(--image-scale));
+  transition:
+    object-position 100ms linear,
+    transform 260ms ease;
   width: 100%;
+  will-change: object-position, transform;
 }
 
 .feature-image-wrap:hover img {
-  transform: scale(1.035);
+  --image-scale: 1.085;
 }
 
 .section-heading {
@@ -714,6 +733,7 @@ h3 {
   overflow: hidden;
   padding-bottom: 28px;
   transition: transform 260ms ease;
+  --image-scale: 1.055;
 }
 
 .lifestyle-card:hover {
@@ -723,12 +743,17 @@ h3 {
 .lifestyle-card img {
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  transition: transform 900ms ease;
+  object-position: center calc(50% + var(--scroll-drift, 0px));
+  transform: scale(var(--image-scale));
+  transition:
+    object-position 100ms linear,
+    transform 260ms ease;
   width: 100%;
+  will-change: object-position, transform;
 }
 
 .lifestyle-card:hover img {
-  transform: scale(1.04);
+  --image-scale: 1.08;
 }
 
 .lifestyle-card div {
@@ -854,9 +879,11 @@ h3 {
 
 .valuation-section {
   align-items: start;
-  background:
+  background-image:
     linear-gradient(rgba(24, 59, 52, 0.88), rgba(24, 59, 52, 0.88)),
-    url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80") center / cover;
+    url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80");
+  background-position: center calc(50% + var(--bg-drift, 0px));
+  background-size: cover;
   color: white;
   display: grid;
   gap: clamp(34px, 5vw, 80px);
@@ -866,6 +893,7 @@ h3 {
   overflow: hidden;
   padding: clamp(42px, 6vw, 78px);
   position: relative;
+  will-change: background-position;
 }
 
 .valuation-section h2 {

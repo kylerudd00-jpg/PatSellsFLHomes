@@ -14,6 +14,9 @@ const heroPlaylist = heroMedia
   : [];
 const heroClipMs = heroMedia ? Number.parseInt(heroMedia.dataset.clipDuration, 10) || 8500 : 8500;
 const timeline = document.querySelector("[data-timeline]");
+const scrollDriftItems = [...document.querySelectorAll("[data-scroll-drift]")];
+const backgroundDriftItems = [...document.querySelectorAll("[data-background-drift]")];
+const sectionProgressItems = [...document.querySelectorAll(".section, .contact-section")];
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const heroFadeMs = 1800;
 
@@ -186,6 +189,7 @@ const updateScrollEffects = () => {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const progress = maxScroll > 0 ? scrollTop / maxScroll : 0;
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
   if (progressBar) {
     progressBar.style.transform = `scaleX(${progress})`;
@@ -200,9 +204,37 @@ const updateScrollEffects = () => {
     heroMedia.style.transform = `scale(1.02) translateY(${parallax}px)`;
   }
 
+  sectionProgressItems.forEach((item) => {
+    const rect = item.getBoundingClientRect();
+    const start = viewportHeight * 0.82;
+    const end = -rect.height * 0.2;
+    const itemProgress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
+    item.style.setProperty("--section-progress", itemProgress.toFixed(3));
+  });
+
+  if (!reduceMotion) {
+    scrollDriftItems.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const speed = Number.parseFloat(item.dataset.scrollDrift) || 18;
+      const itemCenter = rect.top + rect.height / 2;
+      const viewportCenter = viewportHeight / 2;
+      const centerOffset = Math.min(Math.max((itemCenter - viewportCenter) / viewportCenter, -1), 1);
+      item.style.setProperty("--scroll-drift", `${(-centerOffset * speed).toFixed(2)}px`);
+    });
+
+    backgroundDriftItems.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const speed = Number.parseFloat(item.dataset.backgroundDrift) || 24;
+      const itemCenter = rect.top + rect.height / 2;
+      const viewportCenter = viewportHeight / 2;
+      const centerOffset = Math.min(Math.max((itemCenter - viewportCenter) / viewportCenter, -1), 1);
+      item.style.setProperty("--bg-drift", `${(-centerOffset * speed).toFixed(2)}px`);
+    });
+  }
+
   if (timeline) {
     const rect = timeline.getBoundingClientRect();
-    const start = window.innerHeight * 0.82;
+    const start = viewportHeight * 0.82;
     const end = -rect.height * 0.15;
     const timelineProgress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
     timeline.style.setProperty("--timeline-progress", `${timelineProgress * 100}%`);
