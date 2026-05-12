@@ -670,11 +670,14 @@ h3 {
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.92fr);
 }
 
-.advisor-card {
-  align-content: start;
-  display: grid;
-  gap: 28px;
-  min-width: 0;
+.advisor-label {
+  color: var(--brass);
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
 .advisor-photo {
