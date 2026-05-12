@@ -6,9 +6,15 @@ const siteHeader = document.querySelector(".site-header");
 const progressBar = document.querySelector(".scroll-progress span");
 const heroMedia = document.querySelector(".hero-media");
 const heroVideos = [...document.querySelectorAll(".hero-video")];
+const heroPlaylist = heroMedia
+  ? heroMedia.dataset.videoPlaylist
+      .split(",")
+      .map((src) => src.trim())
+      .filter(Boolean)
+  : [];
 const timeline = document.querySelector("[data-timeline]");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const heroFadeMs = 1600;
+const heroFadeMs = 1800;
 
 if (navToggle && navMenu) {
   navToggle.addEventListener("click", () => {
@@ -91,12 +97,26 @@ const playQuietly = (video) => {
 };
 
 const setupHeroVideoLoop = () => {
-  if (reduceMotion || heroVideos.length < 2) {
+  if (reduceMotion || heroVideos.length < 2 || heroPlaylist.length === 0) {
     return;
   }
 
   let activeIndex = 0;
+  let playlistIndex = 0;
   let loopTimer;
+
+  const setVideoSource = (video, src) => {
+    if (!video.getAttribute("src") || !video.getAttribute("src").endsWith(src)) {
+      video.src = src;
+      video.load();
+    }
+  };
+
+  const preloadUpcomingVideo = () => {
+    const standbyIndex = (activeIndex + 1) % heroVideos.length;
+    const upcomingSrc = heroPlaylist[(playlistIndex + 1) % heroPlaylist.length];
+    setVideoSource(heroVideos[standbyIndex], upcomingSrc);
+  };
 
   heroVideos.forEach((video, index) => {
     video.loop = false;
@@ -109,6 +129,9 @@ const setupHeroVideoLoop = () => {
       video.currentTime = 0;
     }
   });
+
+  setVideoSource(heroVideos[activeIndex], heroPlaylist[playlistIndex]);
+  preloadUpcomingVideo();
 
   const scheduleFade = () => {
     const activeVideo = heroVideos[activeIndex];
@@ -123,6 +146,7 @@ const setupHeroVideoLoop = () => {
     const activeVideo = heroVideos[activeIndex];
     const nextIndex = (activeIndex + 1) % heroVideos.length;
     const nextVideo = heroVideos[nextIndex];
+    playlistIndex = (playlistIndex + 1) % heroPlaylist.length;
 
     nextVideo.currentTime = 0;
     nextVideo.classList.add("is-active");
@@ -133,6 +157,7 @@ const setupHeroVideoLoop = () => {
       activeVideo.pause();
       activeVideo.currentTime = 0;
       activeIndex = nextIndex;
+      preloadUpcomingVideo();
       scheduleFade();
     }, heroFadeMs);
   };
