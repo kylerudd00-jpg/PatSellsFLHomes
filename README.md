@@ -17,3 +17,5 @@ The hero reel was adapted from royalty-free Pexels clips:
 - https://www.pexels.com/video/stunning-aerial-view-of-palm-beach-coastline-33983092/
 - https://www.pexels.com/video/aerial-view-of-west-palm-beach-cityscape-33840196/
 - https://www.pexels.com/video/aerial-view-of-west-palm-beach-coastline-33840195/
+
+The page still images are exported frames from that local-market video reel.

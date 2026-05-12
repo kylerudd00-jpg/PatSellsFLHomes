@@ -880,9 +880,10 @@ h3 {
 .valuation-section {
   align-items: start;
   background-image:
-    linear-gradient(rgba(24, 59, 52, 0.88), rgba(24, 59, 52, 0.88)),
-    url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80");
-  background-position: center calc(50% + var(--bg-drift, 0px));
+    linear-gradient(120deg, rgba(15, 25, 23, 0.96), rgba(24, 59, 52, 0.9)),
+    radial-gradient(circle at 12% calc(14% + var(--bg-drift, 0px)), rgba(184, 148, 88, 0.2), transparent 30%),
+    radial-gradient(circle at 82% calc(86% - var(--bg-drift, 0px)), rgba(111, 153, 148, 0.2), transparent 34%);
+  background-position: center;
   background-size: cover;
   color: white;
   display: grid;
