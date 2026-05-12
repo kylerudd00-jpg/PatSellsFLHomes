@@ -413,7 +413,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(2.45rem, 5.2vw, 5rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
   letter-spacing: 0;
   margin-bottom: 18px;
   text-wrap: balance;
@@ -657,7 +657,7 @@ h3 {
 .section {
   margin: 0 auto;
   max-width: 1240px;
-  padding: clamp(82px, 11vw, 136px) 30px;
+  padding: clamp(48px, 6vw, 80px) 30px;
 }
 
 .intro-section {
