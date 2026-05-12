@@ -5,8 +5,10 @@ const navMenu = document.querySelector(".nav-menu");
 const siteHeader = document.querySelector(".site-header");
 const progressBar = document.querySelector(".scroll-progress span");
 const heroMedia = document.querySelector(".hero-media");
+const heroVideos = [...document.querySelectorAll(".hero-video")];
 const timeline = document.querySelector("[data-timeline]");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const heroFadeMs = 1600;
 
 if (navToggle && navMenu) {
   navToggle.addEventListener("click", () => {
@@ -28,6 +30,8 @@ window.addEventListener("DOMContentLoaded", () => {
   if (window.lucide) {
     window.lucide.createIcons();
   }
+
+  setupHeroVideoLoop();
 
   const revealGroups = [
     ".quick-item",
@@ -75,6 +79,81 @@ window.addEventListener("DOMContentLoaded", () => {
 
   [...revealItems, ...imageItems].forEach((item) => observer.observe(item));
 });
+
+const playQuietly = (video) => {
+  const playAttempt = video.play();
+
+  if (playAttempt && typeof playAttempt.catch === "function") {
+    playAttempt.catch(() => {
+      video.controls = false;
+    });
+  }
+};
+
+const setupHeroVideoLoop = () => {
+  if (reduceMotion || heroVideos.length < 2) {
+    return;
+  }
+
+  let activeIndex = 0;
+  let loopTimer;
+
+  heroVideos.forEach((video, index) => {
+    video.loop = false;
+    video.muted = true;
+    video.playsInline = true;
+    video.classList.toggle("is-active", index === activeIndex);
+
+    if (index !== activeIndex) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  });
+
+  const scheduleFade = () => {
+    const activeVideo = heroVideos[activeIndex];
+    const duration = Number.isFinite(activeVideo.duration) ? activeVideo.duration : 18;
+    const delay = Math.max(duration * 1000 - heroFadeMs, 1200);
+
+    window.clearTimeout(loopTimer);
+    loopTimer = window.setTimeout(crossfadeVideos, delay);
+  };
+
+  const crossfadeVideos = () => {
+    const activeVideo = heroVideos[activeIndex];
+    const nextIndex = (activeIndex + 1) % heroVideos.length;
+    const nextVideo = heroVideos[nextIndex];
+
+    nextVideo.currentTime = 0;
+    nextVideo.classList.add("is-active");
+    playQuietly(nextVideo);
+
+    window.setTimeout(() => {
+      activeVideo.classList.remove("is-active");
+      activeVideo.pause();
+      activeVideo.currentTime = 0;
+      activeIndex = nextIndex;
+      scheduleFade();
+    }, heroFadeMs);
+  };
+
+  const startLoop = () => {
+    playQuietly(heroVideos[activeIndex]);
+    scheduleFade();
+  };
+
+  if (heroVideos[activeIndex].readyState >= 1) {
+    startLoop();
+  } else {
+    heroVideos[activeIndex].addEventListener("loadedmetadata", startLoop, { once: true });
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      playQuietly(heroVideos[activeIndex]);
+    }
+  });
+};
 
 let ticking = false;
 
