@@ -1,0 +1,324 @@
+/* ─── Guide page styles ─────────────────────────────── */
+
+.guide-hero {
+  align-items: flex-end;
+  background-color: var(--ink);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  min-height: 52vh;
+  padding: 0 clamp(24px, 6vw, 72px) clamp(48px, 6vw, 72px);
+  position: relative;
+}
+
+.guide-hero::after {
+  background: linear-gradient(to top, rgba(10,18,16,0.88) 0%, rgba(10,18,16,0.3) 55%, transparent 100%);
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.guide-hero-content {
+  max-width: 1240px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.guide-hero-content .eyebrow {
+  color: var(--gold, #c8963e);
+  margin-bottom: 10px;
+}
+
+.guide-hero-content h1 {
+  color: white;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  margin-bottom: 12px;
+}
+
+.guide-hero-content p {
+  color: rgba(255,255,255,0.75);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  max-width: 560px;
+}
+
+/* ─── Guide body ─── */
+
+.guide-body {
+  margin: 0 auto;
+  max-width: 1240px;
+  padding: clamp(48px, 7vw, 88px) clamp(24px, 6vw, 72px);
+}
+
+.guide-section {
+  border-top: 1px solid var(--line);
+  margin-top: clamp(40px, 5vw, 64px);
+  padding-top: clamp(36px, 4vw, 52px);
+}
+
+.guide-section:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.guide-section-label {
+  color: var(--evergreen);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.guide-section h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin-bottom: 20px;
+}
+
+.guide-section p {
+  color: var(--ink-soft);
+  font-size: 1.04rem;
+  line-height: 1.75;
+  max-width: 760px;
+}
+
+/* ─── Quick facts ─── */
+
+.guide-facts {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 0;
+}
+
+.guide-fact {
+  border-right: 1px solid var(--line);
+  padding: 24px 20px;
+}
+
+.guide-fact:last-child {
+  border-right: none;
+}
+
+.guide-fact strong {
+  color: var(--ink);
+  display: block;
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.guide-fact span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* ─── Cards grid (attractions, schools) ─── */
+
+.guide-cards {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 28px;
+}
+
+.guide-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 22px 20px;
+}
+
+.guide-card-icon {
+  align-items: center;
+  background: rgba(30, 80, 70, 0.08);
+  border-radius: 50%;
+  color: var(--evergreen);
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  margin-bottom: 14px;
+  width: 36px;
+}
+
+.guide-card-icon svg {
+  height: 17px;
+  width: 17px;
+}
+
+.guide-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.guide-card p {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  max-width: none;
+}
+
+/* ─── Schools list ─── */
+
+.school-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.school-item {
+  align-items: start;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 4px 16px;
+  grid-template-columns: 1fr auto;
+  padding-bottom: 10px;
+}
+
+.school-item strong {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.school-item span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.school-badge {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+/* ─── Neighborhoods ─── */
+
+.neighborhood-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 24px;
+}
+
+.neighborhood-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brass);
+  padding: 16px 18px;
+}
+
+.neighborhood-item h3 {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.neighborhood-item p {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  max-width: none;
+}
+
+/* ─── Guide CTA ─── */
+
+.guide-cta {
+  background: var(--ink);
+  border-radius: 4px;
+  color: white;
+  margin-top: clamp(40px, 5vw, 64px);
+  padding: clamp(32px, 4vw, 52px);
+  text-align: center;
+}
+
+.guide-cta h2 {
+  color: white;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  margin-bottom: 12px;
+}
+
+.guide-cta p {
+  color: rgba(255,255,255,0.68);
+  margin: 0 auto 28px;
+  max-width: 520px;
+}
+
+.guide-cta-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* ─── Back link ─── */
+
+.guide-back {
+  align-items: center;
+  color: var(--ink-soft);
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 600;
+  gap: 6px;
+  margin-bottom: 32px;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.guide-back:hover {
+  color: var(--evergreen);
+}
+
+.guide-back svg {
+  height: 14px;
+  width: 14px;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 980px) {
+  .guide-facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .guide-fact:nth-child(2) {
+    border-right: none;
+  }
+
+  .guide-fact:nth-child(1),
+  .guide-fact:nth-child(2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .guide-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .guide-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .guide-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .neighborhood-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-cta-actions {
+    flex-direction: column;
+  }
+}

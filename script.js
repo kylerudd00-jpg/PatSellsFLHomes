@@ -285,8 +285,7 @@ window.addEventListener("scroll", requestScrollUpdate, { passive: true });
 window.addEventListener("resize", requestScrollUpdate);
 requestScrollUpdate();
 
-// Valuation form — replace YOUR_FORM_ID after creating a form at formspree.io
-const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/patsellsflhomes@gmail.com";
 const valuationForm = document.getElementById("valuation-form");
 
 if (valuationForm) {

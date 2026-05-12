@@ -15,6 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/jpeg" href="assets/patforweb.jpg" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="script.js" defer></script>
   </head>
@@ -25,7 +26,7 @@
     <header class="site-header">
       <nav class="nav-shell" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="Pat Magno home">
-          <span class="brand-mark">PM</span>
+          <span class="brand-mark"><img src="assets/patforweb.jpg" alt="Pat Magno" class="brand-photo" /></span>
           <span>
             <strong>Pat Magno</strong>
             <small>South Florida Real Estate</small>
@@ -44,8 +45,8 @@
 
         <div class="nav-menu" id="primary-menu">
           <a href="#about">About</a>
-          <a href="#buy">Buy</a>
-          <a href="#sell">Sell</a>
+          <a href="#contact">Buy</a>
+          <a href="#valuation">Sell</a>
           <a href="#areas">Areas</a>
           <a href="#contact">Contact</a>
         </div>
@@ -94,7 +95,7 @@
               refined preparation, and a confident read on the coastal market.
             </p>
             <div class="hero-actions" aria-label="Primary actions">
-              <a class="button button-primary" href="#contact">
+              <a class="button button-primary" href="https://calendly.com/patsellsflhomes" target="_blank" rel="noreferrer">
                 <i data-lucide="calendar-check"></i>
                 Schedule a Consultation
               </a>
@@ -111,22 +112,32 @@
         </div>
       </section>
 
-      <section class="quick-panel" aria-label="Pat Magno contact summary">
-        <div class="quick-item">
-          <span>Advisor</span>
-          <strong>Patricia "Pat" Magno</strong>
-        </div>
-        <div class="quick-item">
-          <span>Office</span>
-          <strong>Coldwell Banker Realty, Delray Beach</strong>
-        </div>
-        <div class="quick-item">
-          <span>Market</span>
-          <strong>Delray Beach, Boca Raton, and nearby coastal communities</strong>
-        </div>
-        <div class="quick-item">
-          <span>Method</span>
-          <strong>Practical preparation, clear counsel, and steady execution</strong>
+
+<div class="listing-strip">
+        <span><i data-lucide="circle-dot"></i> Active in the market</span>
+        <a href="https://www.zillow.com/agent-profile/patriciamagnorealtor" target="_blank" rel="noreferrer">
+          View Pat's current listings <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+
+      <section class="stats-bar" aria-label="Pat Magno at a glance">
+        <div class="stats-inner">
+          <div class="stat-item">
+            <strong>20+</strong>
+            <span>Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <strong>300+</strong>
+            <span>Homes Sold</span>
+          </div>
+          <div class="stat-item">
+            <strong>$500M+</strong>
+            <span>In Transactions</span>
+          </div>
+          <div class="stat-item">
+            <strong>5★</strong>
+            <span>Client Rating</span>
+          </div>
         </div>
       </section>
 
@@ -134,12 +145,9 @@
         <div class="section-kicker">Meet Pat</div>
         <div class="intro-grid">
           <div class="advisor-card">
-            <div
-              class="advisor-photo"
-              data-fallback-initials="PM"
-              role="img"
-              aria-label="Pat Magno headshot placeholder"
-            ></div>
+            <div class="advisor-photo">
+              <img src="assets/patforweb.jpg" alt="Pat Magno" />
+            </div>
             <div class="advisor-card-copy">
               <span>Patricia "Pat" Magno</span>
               <h2>Local guidance for one of life's most personal moves.</h2>
@@ -164,173 +172,67 @@
         <p class="section-kicker">Client Perspective</p>
         <div class="testimonials-grid">
           <blockquote class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
             <p>"Pat made what felt like an overwhelming process feel completely manageable. Her knowledge of Delray Beach and the surrounding market gave us real confidence at every step."</p>
             <footer><strong>Michael &amp; Karen L.</strong><span>Buyers · Delray Beach</span></footer>
           </blockquote>
           <blockquote class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
             <p>"We listed and closed in under three weeks. Pat's pricing strategy and preparation were precise — we walked away well above asking with no drama whatsoever."</p>
             <footer><strong>Sandra T.</strong><span>Seller · Boca Raton</span></footer>
           </blockquote>
         </div>
       </section>
 
-      <section class="section feature-band">
-        <div class="feature-copy">
-          <p class="eyebrow">Signature Approach</p>
-          <h2>Preparation first. Pressure never.</h2>
-          <p>
-            The best real estate experiences feel organized before they feel urgent. Pat helps
-            clients compare options, understand value, and make decisions with a steady view of the
-            next step.
-          </p>
-        </div>
-        <div class="feature-image-wrap" data-scroll-drift="26">
-          <img
-            src="assets/west-palm-cityscape-still.jpg"
-            alt="Aerial view of West Palm Beach cityscape and coastal neighborhoods"
-            loading="lazy"
-            width="1600"
-            height="900"
-          />
-        </div>
-      </section>
-
-      <section class="section service-section" aria-label="Real estate services">
-        <div class="section-heading">
-          <p class="section-kicker">Services</p>
-          <h2>Built for buyers, sellers, and smart transitions.</h2>
-        </div>
-        <div class="service-grid">
-          <article class="service-card" id="buy">
-            <div class="service-icon"><i data-lucide="key-round"></i></div>
-            <h3>Buy With Clarity</h3>
-            <p>
-              Neighborhood guidance, tour planning, offer strategy, inspection support, and closing
-              coordination for a smoother purchase.
-            </p>
-            <a href="#contact">Start a home search</a>
-          </article>
-          <article class="service-card" id="sell">
-            <div class="service-icon"><i data-lucide="badge-dollar-sign"></i></div>
-            <h3>Sell With Strategy</h3>
-            <p>
-              Pricing conversations, preparation priorities, presentation planning, launch timing,
-              negotiation, and contract-to-close support.
-            </p>
-            <a href="#valuation">Request a value review</a>
-          </article>
-          <article class="service-card">
-            <div class="service-icon"><i data-lucide="map-pinned"></i></div>
-            <h3>Relocate With Ease</h3>
-            <p>
-              A practical orientation to South Florida communities, coastal living patterns, commute
-              considerations, and lifestyle fit.
-            </p>
-            <a href="#areas">Explore communities</a>
-          </article>
-        </div>
-      </section>
-
-      <section class="section lifestyle-section" aria-label="South Florida lifestyles">
-        <div class="section-heading compact-heading">
-          <p class="section-kicker">Local Perspective</p>
-          <h2>The market is more than listings. It is coastline, pace, and place.</h2>
-        </div>
-        <div class="lifestyle-grid">
-          <article class="lifestyle-card">
-            <div class="lifestyle-media" data-scroll-drift="16">
-              <img
-                src="assets/palm-beach-coastline-still.jpg"
-                alt="Aerial view of Palm Beach coastline and residential neighborhoods"
-                loading="lazy"
-                width="1600"
-                height="900"
-              />
-            </div>
-            <div class="lifestyle-content">
-              <span>Coastal Corridor</span>
-              <h3>Beachside neighborhoods where lifestyle and long-term value meet.</h3>
-            </div>
-          </article>
-          <article class="lifestyle-card">
-            <div class="lifestyle-media" data-scroll-drift="22">
-              <img
-                src="assets/west-palm-cityscape-still.jpg"
-                alt="Aerial view over West Palm Beach streets and skyline"
-                loading="lazy"
-                width="1600"
-                height="900"
-              />
-            </div>
-            <div class="lifestyle-content">
-              <span>Urban Access</span>
-              <h3>Downtown energy, cultural anchors, and practical everyday convenience.</h3>
-            </div>
-          </article>
-          <article class="lifestyle-card">
-            <div class="lifestyle-media" data-scroll-drift="18">
-              <img
-                src="assets/west-palm-coastline-still.jpg"
-                alt="Aerial view of West Palm Beach shoreline and oceanfront road"
-                loading="lazy"
-                width="1600"
-                height="900"
-              />
-            </div>
-            <div class="lifestyle-content">
-              <span>Waterfront Rhythm</span>
-              <h3>Second homes, right-sized moves, and the daily pull of the water.</h3>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section process-section">
-        <div class="section-heading">
-          <p class="section-kicker">The Process</p>
-          <h2>A refined path from first call to closing.</h2>
-        </div>
-        <div class="process-grid" data-timeline>
-          <article>
-            <span>01</span>
-            <h3>Listen</h3>
-            <p>Clarify goals, timing, lifestyle needs, and the decision points that matter most.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Prepare</h3>
-            <p>Shape the pricing, search, presentation, or offer strategy before the market moves.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Negotiate</h3>
-            <p>Keep terms, inspections, deadlines, and contingencies moving with steady attention.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Close</h3>
-            <p>Coordinate the final details so the last stretch feels clear and well-managed.</p>
-          </article>
-        </div>
-      </section>
 
       <section class="section areas-section" id="areas">
-        <div>
+        <div class="section-heading">
           <p class="section-kicker">Communities</p>
           <h2>Palm Beach County knowledge with a coastal point of view.</h2>
-          <p>
-            From Delray Beach and Boca Raton to Boynton Beach, Gulf Stream, Highland Beach, and
-            nearby coastal communities, Pat helps clients read each neighborhood beyond the listing
-            photos.
-          </p>
         </div>
-        <div class="area-list" aria-label="Areas served">
-          <span>Delray Beach</span>
-          <span>Boca Raton</span>
-          <span>Boynton Beach</span>
-          <span>Gulf Stream</span>
-          <span>Highland Beach</span>
-          <span>Palm Beach County</span>
+        <div class="area-cards" aria-label="Areas served">
+          <a class="area-card" href="delray-beach.html" style="--bg: url('assets/area-delray-beach.jpg')">
+            <div class="area-card-body">
+              <h3>Delray Beach</h3>
+              <p>Atlantic Ave walkability, waterfront dining, and a lively coastal downtown.</p>
+            </div>
+            <span class="area-card-cta">View homes <i data-lucide="arrow-right"></i></span>
+          </a>
+          <a class="area-card" href="boca-raton.html" style="--bg: url('assets/area-boca-raton.jpg')">
+            <div class="area-card-body">
+              <h3>Boca Raton</h3>
+              <p>Upscale communities, top-rated schools, and a polished resort lifestyle.</p>
+            </div>
+            <span class="area-card-cta">View homes <i data-lucide="arrow-right"></i></span>
+          </a>
+          <a class="area-card" href="boynton-beach.html" style="--bg: url('assets/area-boynton-beach.jpg')">
+            <div class="area-card-body">
+              <h3>Boynton Beach</h3>
+              <p>Coastal access at approachable price points with a growing community feel.</p>
+            </div>
+            <span class="area-card-cta">View homes <i data-lucide="arrow-right"></i></span>
+          </a>
+          <a class="area-card" href="gulf-stream.html" style="--bg: url('assets/area-gulf-stream.jpg')">
+            <div class="area-card-body">
+              <h3>Gulf Stream</h3>
+              <p>Quiet oceanfront enclave with estate-sized lots and a deeply private character.</p>
+            </div>
+            <span class="area-card-cta">View homes <i data-lucide="arrow-right"></i></span>
+          </a>
+          <a class="area-card" href="highland-beach.html" style="--bg: url('assets/area-highland-beach.jpg')">
+            <div class="area-card-body">
+              <h3>Highland Beach</h3>
+              <p>Boutique oceanfront condos and a serene, low-density residential pace.</p>
+            </div>
+            <span class="area-card-cta">View homes <i data-lucide="arrow-right"></i></span>
+          </a>
+          <a class="area-card" href="palm-beach-county.html" style="--bg: url('assets/area-palm-beach-county.jpg')">
+            <div class="area-card-body">
+              <h3>Palm Beach County</h3>
+              <p>Broad coverage from coastal neighborhoods to inland communities throughout the county.</p>
+            </div>
+            <span class="area-card-cta">View homes <i data-lucide="arrow-right"></i></span>
+          </a>
         </div>
       </section>
 
@@ -378,6 +280,7 @@
       <section class="contact-section" id="contact">
         <div class="contact-inner">
           <div>
+            <img src="assets/patforweb.jpg" alt="Pat Magno" class="contact-photo" />
             <p class="section-kicker">Contact Pat</p>
             <h2>Ready for a better real estate conversation?</h2>
             <p>
@@ -416,6 +319,17 @@
         </div>
       </section>
     </main>
+
+    <div class="mobile-cta-strip" aria-label="Quick contact">
+      <a href="tel:+15612664444" class="mobile-cta-btn">
+        <i data-lucide="phone"></i>
+        Call Pat
+      </a>
+      <a href="#contact" class="mobile-cta-btn mobile-cta-btn--primary">
+        <i data-lucide="calendar-check"></i>
+        Get in Touch
+      </a>
+    </div>
 
     <footer class="site-footer">
       <div>
