@@ -12,6 +12,7 @@ const heroPlaylist = heroMedia
       .map((src) => src.trim())
       .filter(Boolean)
   : [];
+const heroClipMs = heroMedia ? Number.parseInt(heroMedia.dataset.clipDuration, 10) || 8500 : 8500;
 const timeline = document.querySelector("[data-timeline]");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const heroFadeMs = 1800;
@@ -106,8 +107,9 @@ const setupHeroVideoLoop = () => {
   let loopTimer;
 
   const setVideoSource = (video, src) => {
-    if (!video.getAttribute("src") || !video.getAttribute("src").endsWith(src)) {
+    if (video.dataset.activeSrc !== src) {
       video.src = src;
+      video.dataset.activeSrc = src;
       video.load();
     }
   };
@@ -134,9 +136,7 @@ const setupHeroVideoLoop = () => {
   preloadUpcomingVideo();
 
   const scheduleFade = () => {
-    const activeVideo = heroVideos[activeIndex];
-    const duration = Number.isFinite(activeVideo.duration) ? activeVideo.duration : 18;
-    const delay = Math.max(duration * 1000 - heroFadeMs, 1200);
+    const delay = Math.max(heroClipMs - heroFadeMs, 1800);
 
     window.clearTimeout(loopTimer);
     loopTimer = window.setTimeout(crossfadeVideos, delay);
