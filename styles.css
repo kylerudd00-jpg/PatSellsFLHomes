@@ -1241,6 +1241,174 @@ h3 {
   color: var(--clay);
 }
 
+/* ─── Listings section ─── */
+
+.listings-section {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.listings-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: clamp(28px, 3vw, 44px);
+}
+
+.listing-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 260ms ease, box-shadow 260ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-card:hover {
+  box-shadow: 0 10px 32px rgba(0,0,0,0.10);
+  transform: translateY(-3px);
+}
+
+.listing-card-img {
+  background-position: center;
+  background-size: cover;
+  height: 180px;
+}
+
+.listing-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 20px;
+}
+
+.listing-card-location {
+  align-items: center;
+  color: var(--evergreen);
+  display: flex;
+  font-size: 0.78rem;
+  font-weight: 800;
+  gap: 5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.listing-card-location svg {
+  height: 12px;
+  width: 12px;
+}
+
+.listing-card-type {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.listing-card-cta {
+  align-items: center;
+  color: var(--ink);
+  display: flex;
+  font-size: 0.8rem;
+  font-weight: 700;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.listing-card-cta svg {
+  height: 13px;
+  transition: transform 200ms ease;
+  width: 13px;
+}
+
+.listing-card:hover .listing-card-cta svg {
+  transform: translateX(4px);
+}
+
+.listings-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+/* ─── Map ─── */
+
+#areas-map {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  height: 420px;
+  margin-bottom: clamp(28px, 3vw, 44px);
+  margin-top: clamp(28px, 3vw, 44px);
+  overflow: hidden;
+  width: 100%;
+  z-index: 0;
+}
+
+.map-pin {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.map-pin span {
+  background: var(--evergreen);
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  display: block;
+  height: 14px;
+  transition: transform 180ms ease;
+  width: 14px;
+}
+
+.map-pin:hover span {
+  transform: scale(1.4);
+}
+
+.map-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 140px;
+  padding: 2px 0;
+}
+
+.map-popup strong {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.map-popup span {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+}
+
+.map-popup a {
+  color: var(--evergreen);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 4px;
+  text-decoration: none;
+}
+
+.map-popup a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 980px) {
+  .listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #areas-map {
+    height: 320px;
+  }
+}
+
 .contact-photo {
   border-radius: 50%;
   display: block;

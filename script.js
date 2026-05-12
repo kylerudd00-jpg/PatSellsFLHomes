@@ -323,3 +323,48 @@ if (valuationForm) {
     }
   });
 }
+
+// Interactive map
+const mapEl = document.getElementById("areas-map");
+if (mapEl && typeof L !== "undefined") {
+  const map = L.map("areas-map", {
+    center: [26.46, -80.09],
+    zoom: 11,
+    scrollWheelZoom: false,
+    zoomControl: true,
+  });
+
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 19,
+  }).addTo(map);
+
+  const pinIcon = L.divIcon({
+    className: "map-pin",
+    html: `<span></span>`,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+  });
+
+  const areas = [
+    { name: "Delray Beach", coords: [26.4615, -80.0728], price: "$650K median", url: "delray-beach.html" },
+    { name: "Boca Raton",   coords: [26.3683, -80.1289], price: "$850K median", url: "boca-raton.html" },
+    { name: "Boynton Beach",coords: [26.5317, -80.0905], price: "$430K median", url: "boynton-beach.html" },
+    { name: "Gulf Stream",  coords: [26.5038, -80.0481], price: "$3M+ typical", url: "gulf-stream.html" },
+    { name: "Highland Beach",coords:[26.4087, -80.0723], price: "$700K median", url: "highland-beach.html" },
+    { name: "Palm Beach County", coords: [26.7153, -80.0534], price: "County-wide", url: "palm-beach-county.html" },
+  ];
+
+  areas.forEach(({ name, coords, price, url }) => {
+    const marker = L.marker(coords, { icon: pinIcon }).addTo(map);
+    marker.bindPopup(
+      `<div class="map-popup">
+        <strong>${name}</strong>
+        <span>${price}</span>
+        <a href="${url}">Read the guide →</a>
+      </div>`,
+      { closeButton: false, offset: [0, -4] }
+    );
+    marker.on("mouseover", () => marker.openPopup());
+  });
+}
