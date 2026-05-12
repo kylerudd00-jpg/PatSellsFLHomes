@@ -21,6 +21,12 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 const heroFadeMs = 1800;
 let revealWatchItems = [];
 
+const closeNav = () => {
+  navMenu.classList.remove("is-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", "Open navigation");
+};
+
 if (navToggle && navMenu) {
   navToggle.addEventListener("click", () => {
     const isOpen = navMenu.classList.toggle("is-open");
@@ -29,11 +35,13 @@ if (navToggle && navMenu) {
   });
 
   navMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", "Open navigation");
-    });
+    link.addEventListener("click", closeNav);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (navMenu.classList.contains("is-open") && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+      closeNav();
+    }
   });
 }
 
@@ -41,17 +49,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (window.lucide) {
     window.lucide.createIcons();
   }
-
-  document.querySelectorAll("[data-fallback-initials] img").forEach((img) => {
-    const frame = img.closest("[data-fallback-initials]");
-    const showFallback = () => frame?.classList.add("is-missing");
-
-    if (img.complete && img.naturalWidth === 0) {
-      showFallback();
-    } else {
-      img.addEventListener("error", showFallback, { once: true });
-    }
-  });
 
   setupHeroVideoLoop();
 
@@ -62,6 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
     ".section h2",
     ".intro-copy p",
     ".feature-copy p",
+    ".testimonial-card",
     ".service-card",
     ".lifestyle-card",
     ".process-grid article",
@@ -286,3 +284,43 @@ const requestScrollUpdate = () => {
 window.addEventListener("scroll", requestScrollUpdate, { passive: true });
 window.addEventListener("resize", requestScrollUpdate);
 requestScrollUpdate();
+
+// Valuation form — replace YOUR_FORM_ID after creating a form at formspree.io
+const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const valuationForm = document.getElementById("valuation-form");
+
+if (valuationForm) {
+  const formFeedback = valuationForm.querySelector(".form-feedback");
+  const submitBtn = valuationForm.querySelector('[type="submit"]');
+
+  valuationForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!submitBtn || !formFeedback) return;
+
+    submitBtn.disabled = true;
+    formFeedback.hidden = true;
+    formFeedback.className = "form-feedback";
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: new FormData(valuationForm),
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        formFeedback.textContent = "Thanks — Pat will follow up within one business day.";
+        formFeedback.classList.add("is-success");
+        valuationForm.reset();
+      } else {
+        throw new Error();
+      }
+    } catch {
+      formFeedback.textContent = "Something went wrong. Please call or email Pat directly.";
+      formFeedback.classList.add("is-error");
+    } finally {
+      formFeedback.hidden = false;
+      submitBtn.disabled = false;
+    }
+  });
+}

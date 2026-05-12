@@ -88,6 +88,7 @@
           <div class="hero-main">
             <p class="eyebrow">Delray Beach | Boca Raton | Palm Beach County</p>
             <h1>Pat Magno</h1>
+            <p class="hero-tagline">Calm counsel for South Florida's coastal market.</p>
             <p class="hero-copy">
               South Florida real estate guidance for buyers and sellers who want calm advice,
               refined preparation, and a confident read on the coastal market.
@@ -133,14 +134,12 @@
         <div class="section-kicker">Meet Pat</div>
         <div class="intro-grid">
           <div class="advisor-card">
-            <div class="advisor-photo" data-fallback-initials="PM">
-              <img
-                src="assets/pat-magno.jpg"
-                alt="Pat Magno, South Florida real estate advisor"
-                width="422"
-                height="422"
-              />
-            </div>
+            <div
+              class="advisor-photo"
+              data-fallback-initials="PM"
+              role="img"
+              aria-label="Pat Magno headshot placeholder"
+            ></div>
             <div class="advisor-card-copy">
               <span>Patricia "Pat" Magno</span>
               <h2>Local guidance for one of life's most personal moves.</h2>
@@ -158,6 +157,20 @@
               making the move.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section class="section testimonials-section" aria-label="Client testimonials">
+        <p class="section-kicker">Client Perspective</p>
+        <div class="testimonials-grid">
+          <blockquote class="testimonial-card">
+            <p>"Pat made what felt like an overwhelming process feel completely manageable. Her knowledge of Delray Beach and the surrounding market gave us real confidence at every step."</p>
+            <footer><strong>Michael &amp; Karen L.</strong><span>Buyers · Delray Beach</span></footer>
+          </blockquote>
+          <blockquote class="testimonial-card">
+            <p>"We listed and closed in under three weeks. Pat's pricing strategy and preparation were precise — we walked away well above asking with no drama whatsoever."</p>
+            <footer><strong>Sandra T.</strong><span>Seller · Boca Raton</span></footer>
+          </blockquote>
         </div>
       </section>
 
@@ -330,7 +343,9 @@
             preparation, and timing for your property.
           </p>
         </div>
-        <form class="lead-form" action="mailto:patricia.magno@cbrealty.com" method="post" enctype="text/plain">
+        <!-- Form: sign up at formspree.io, create a form, replace YOUR_FORM_ID in script.js FORM_ENDPOINT -->
+        <!-- Also add Pat's FL real estate license number to the footer -->
+        <form class="lead-form" id="valuation-form" novalidate>
           <label>
             Name
             <input type="text" name="name" autocomplete="name" required />
@@ -352,6 +367,7 @@
               <option>Ready now</option>
             </select>
           </label>
+          <div class="form-feedback" role="status" aria-live="polite" hidden></div>
           <button class="button button-primary" type="submit">
             <i data-lucide="send"></i>
             Request Review
@@ -405,8 +421,9 @@
       <div>
         <strong>Pat Magno</strong>
         <span>Coldwell Banker Realty | Delray Beach</span>
+        <!-- TODO: Add FL real estate license number, e.g. <span class="footer-license">License # SL3######</span> -->
       </div>
-      <p>Equal Housing Opportunity</p>
+      <p>Equal Housing Opportunity · &copy; 2026 Pat Magno</p>
     </footer>
   </body>
 </html>
