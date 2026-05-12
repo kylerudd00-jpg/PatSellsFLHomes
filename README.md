@@ -19,3 +19,7 @@ The hero reel was adapted from royalty-free Pexels clips:
 - https://www.pexels.com/video/aerial-view-of-west-palm-beach-coastline-33840195/
 
 The page still images are exported frames from that local-market video reel.
+
+## Headshot
+
+Save Pat's real headshot as `assets/pat-magno.jpg`. The site has a branded fallback in place until that file is added.

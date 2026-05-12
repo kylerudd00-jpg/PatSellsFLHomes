@@ -19,6 +19,7 @@ const backgroundDriftItems = [...document.querySelectorAll("[data-background-dri
 const sectionProgressItems = [...document.querySelectorAll(".section, .contact-section")];
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const heroFadeMs = 1800;
+let revealWatchItems = [];
 
 if (navToggle && navMenu) {
   navToggle.addEventListener("click", () => {
@@ -41,10 +42,22 @@ window.addEventListener("DOMContentLoaded", () => {
     window.lucide.createIcons();
   }
 
+  document.querySelectorAll("[data-fallback-initials] img").forEach((img) => {
+    const frame = img.closest("[data-fallback-initials]");
+    const showFallback = () => frame?.classList.add("is-missing");
+
+    if (img.complete && img.naturalWidth === 0) {
+      showFallback();
+    } else {
+      img.addEventListener("error", showFallback, { once: true });
+    }
+  });
+
   setupHeroVideoLoop();
 
   const revealGroups = [
     ".quick-item",
+    ".advisor-card",
     ".section-kicker",
     ".section h2",
     ".intro-copy p",
@@ -61,7 +74,8 @@ window.addEventListener("DOMContentLoaded", () => {
   ];
 
   const revealItems = document.querySelectorAll(revealGroups.join(","));
-  const imageItems = document.querySelectorAll(".feature-image-wrap");
+  const imageItems = document.querySelectorAll(".advisor-photo, .feature-image-wrap, .lifestyle-media");
+  revealWatchItems = [...revealItems, ...imageItems];
 
   revealItems.forEach((item, index) => {
     item.classList.add("reveal");
@@ -71,7 +85,8 @@ window.addEventListener("DOMContentLoaded", () => {
   imageItems.forEach((item) => item.classList.add("image-reveal"));
 
   if (reduceMotion || !("IntersectionObserver" in window)) {
-    [...revealItems, ...imageItems].forEach((item) => item.classList.add("is-visible"));
+    revealWatchItems.forEach((item) => item.classList.add("is-visible"));
+    revealWatchItems = [];
     return;
   }
 
@@ -87,7 +102,8 @@ window.addEventListener("DOMContentLoaded", () => {
     { rootMargin: "0px 0px -12% 0px", threshold: 0.16 }
   );
 
-  [...revealItems, ...imageItems].forEach((item) => observer.observe(item));
+  revealWatchItems.forEach((item) => observer.observe(item));
+  requestScrollUpdate();
 });
 
 const playQuietly = (video) => {
@@ -211,6 +227,23 @@ const updateScrollEffects = () => {
     const itemProgress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
     item.style.setProperty("--section-progress", itemProgress.toFixed(3));
   });
+
+  if (revealWatchItems.length) {
+    revealWatchItems = revealWatchItems.filter((item) => {
+      if (item.classList.contains("is-visible")) {
+        return false;
+      }
+
+      const rect = item.getBoundingClientRect();
+
+      if (rect.top < viewportHeight * 0.92 && rect.bottom > viewportHeight * 0.02) {
+        item.classList.add("is-visible");
+        return false;
+      }
+
+      return true;
+    });
+  }
 
   if (!reduceMotion) {
     scrollDriftItems.forEach((item) => {
