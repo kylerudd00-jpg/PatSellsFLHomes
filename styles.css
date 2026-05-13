@@ -571,9 +571,9 @@ h3 {
 
 .stats-inner {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin: 0 auto;
-  max-width: 1240px;
+  max-width: 900px;
 }
 
 .stat-item {
@@ -785,6 +785,43 @@ h3 {
   min-width: 44px;
   padding: 3px 7px;
   text-align: center;
+}
+
+.why-grid {
+  display: grid;
+  gap: clamp(16px, 2.5vw, 28px);
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 40px;
+}
+
+.why-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: clamp(20px, 2.5vw, 30px);
+}
+
+.why-icon {
+  color: var(--brass);
+  margin-bottom: 14px;
+}
+
+.why-icon svg {
+  height: 26px;
+  width: 26px;
+}
+
+.why-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.why-card p {
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+  line-height: 1.72;
+  margin: 0;
 }
 
 .testimonials-section {
@@ -1885,7 +1922,7 @@ h3 {
   }
 
   h1 {
-    font-size: clamp(3.05rem, 15.5vw, 4.2rem);
+    font-size: clamp(2.4rem, 11.5vw, 3.5rem);
     max-width: 100%;
   }
 
@@ -1906,9 +1943,18 @@ h3 {
     max-width: 38ch;
   }
 
-  .hero-actions,
   .button {
     width: 100%;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .button {
+    flex: 1;
+    min-width: 0;
+    width: auto;
   }
 
   .scroll-cue {
@@ -2283,6 +2329,7 @@ h3 {
 
 @media (max-width: 600px) {
   .area-tools { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
 }
 
 /* ─── Buyer / Seller / Specialty page styles ─── */
