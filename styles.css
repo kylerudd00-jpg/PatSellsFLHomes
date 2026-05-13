@@ -834,27 +834,18 @@ h3 {
 }
 
 .testimonials-track {
-  min-height: 220px;
-  position: relative;
+  min-height: 0;
 }
 
 .testimonial-card {
   border-left: 2px solid var(--brass);
-  left: 0;
+  display: none;
   margin: 0;
-  opacity: 0;
   padding: 6px 0 6px 24px;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: opacity 450ms ease;
 }
 
 .testimonial-card.is-active {
-  opacity: 1;
-  pointer-events: auto;
-  position: relative;
+  display: block;
 }
 
 .testimonials-controls {
@@ -2280,6 +2271,22 @@ h3 {
 }
 
 /* ─── Area tools strip ─── */
+
+.neighborhood-tools-section {
+  padding-top: clamp(24px, 3vw, 40px) !important;
+  padding-bottom: clamp(24px, 3vw, 40px) !important;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.neighborhood-tools-label {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+}
 
 .area-tools {
   display: grid;
