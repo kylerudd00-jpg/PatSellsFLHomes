@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
-    <script>document.addEventListener("DOMContentLoaded", () => lucide.createIcons());</script>
+    <script src="script.js" defer></script>
       <link rel="canonical" href="https://patsellsflhomes.com/seller.html" />
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -150,10 +150,30 @@
           <p class="path-section-label">Get Started</p>
           <h2>What's your home worth?</h2>
           <p>Share a few details and Pat will follow up with a realistic read on your home's value, what's worth addressing before you list, and the right time to move.</p>
-          <form class="lead-form" id="seller-form" novalidate style="max-width:560px;margin-top:28px;">
+          <form
+            class="lead-form"
+            id="seller-form"
+            method="POST"
+            action="https://formsubmit.co/patsellsflhomes@gmail.com"
+            data-lead-type="seller_home_review"
+            data-fallback-endpoint="https://formsubmit.co/ajax/patsellsflhomes@gmail.com"
+            data-success-url="thank-you.html"
+            style="max-width:560px;margin-top:28px;"
+          >
+            <input type="hidden" name="_subject" value="New seller home review request from PatSellsFLHomes.com" />
+            <input type="hidden" name="form_type" value="seller_home_review" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://patsellsflhomes.com/thank-you.html" />
+            <div class="lead-form-trap" aria-hidden="true">
+              <label>
+                Leave this field blank
+                <input type="text" name="_honey" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
             <label>Name<input type="text" name="name" autocomplete="name" required /></label>
             <label>Email<input type="email" name="email" autocomplete="email" required /></label>
-            <label>Property address<input type="text" name="property-address" autocomplete="street-address" /></label>
+            <label>Property address<input type="text" name="property_address" autocomplete="street-address" /></label>
             <label>
               Timeline
               <select name="timeline">
@@ -186,33 +206,5 @@
       <p>Equal Housing Opportunity · &copy; 2026 Pat Magno</p>
     </footer>
 
-    <script>
-      const form = document.getElementById('seller-form');
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const fb = form.querySelector('.form-feedback');
-        const btn = form.querySelector('button');
-        btn.disabled = true;
-        btn.textContent = 'Sending…';
-        try {
-          const res = await fetch('https://formsubmit.co/ajax/patsellsflhomes@gmail.com', {
-            method: 'POST',
-            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(new FormData(form)))
-          });
-          if (res.ok) {
-            fb.textContent = "Got it — Pat will be in touch within one business day.";
-            fb.removeAttribute('hidden');
-            form.reset();
-          } else { throw new Error(); }
-        } catch {
-          fb.textContent = "Something went wrong. Call or email Pat directly.";
-          fb.removeAttribute('hidden');
-        }
-        btn.disabled = false;
-        btn.innerHTML = '<i data-lucide="send"></i> Request a Home Review';
-        lucide.createIcons();
-      });
-    </script>
   </body>
 </html>

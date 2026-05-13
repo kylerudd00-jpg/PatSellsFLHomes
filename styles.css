@@ -1325,6 +1325,7 @@ h3 {
   display: grid;
   gap: 16px;
   padding: 26px;
+  position: relative;
   transition:
     box-shadow 260ms ease,
     transform 260ms ease;
@@ -1358,6 +1359,15 @@ h3 {
 .lead-form select:focus {
   border-color: var(--evergreen);
   outline: 3px solid rgba(24, 59, 52, 0.14);
+}
+
+.lead-form-trap {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
 }
 
 .lead-form .button-primary {

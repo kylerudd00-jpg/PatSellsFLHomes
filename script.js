@@ -316,44 +316,206 @@ if (tcEl) {
   timer = setInterval(() => goTo(current + 1), 5500);
 }
 
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/patsellsflhomes@gmail.com";
-const valuationForm = document.getElementById("valuation-form");
+const LEAD_API_ENDPOINT = "/api/leads";
+const FORM_FALLBACK_ENDPOINT = "https://formsubmit.co/ajax/patsellsflhomes@gmail.com";
+const leadForms = [...document.querySelectorAll(".lead-form")];
+const lastLeadSubmissionTimes = new WeakMap();
 
-if (valuationForm) {
-  const formFeedback = valuationForm.querySelector(".form-feedback");
-  const submitBtn = valuationForm.querySelector('[type="submit"]');
+const UTM_KEYS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "gclid",
+  "fbclid",
+];
 
-  valuationForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!submitBtn || !formFeedback) return;
+const getLeadMetadata = (form) => {
+  const params = new URLSearchParams(window.location.search);
+  const campaign = UTM_KEYS.reduce((memo, key) => {
+    const value = params.get(key);
+    if (value) memo[key] = value;
+    return memo;
+  }, {});
 
-    submitBtn.disabled = true;
-    formFeedback.hidden = true;
-    formFeedback.className = "form-feedback";
+  return {
+    form_id: form.id || "",
+    form_type: form.dataset.leadType || form.getAttribute("name") || "general",
+    page_title: document.title,
+    page_url: window.location.href,
+    page_path: window.location.pathname,
+    referrer: document.referrer,
+    submitted_at: new Date().toISOString(),
+    user_agent: navigator.userAgent,
+    ...campaign,
+  };
+};
 
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        body: new FormData(valuationForm),
-        headers: { Accept: "application/json" },
-      });
+const formDataToObject = (formData) => {
+  const data = {};
 
-      if (res.ok) {
-        formFeedback.textContent = "Thanks — Pat will follow up within one business day.";
-        formFeedback.classList.add("is-success");
-        valuationForm.reset();
-      } else {
-        throw new Error();
-      }
-    } catch {
-      formFeedback.textContent = "Something went wrong. Please call or email Pat directly.";
-      formFeedback.classList.add("is-error");
-    } finally {
-      formFeedback.hidden = false;
-      submitBtn.disabled = false;
+  formData.forEach((value, key) => {
+    if (data[key]) {
+      data[key] = Array.isArray(data[key]) ? [...data[key], value] : [data[key], value];
+    } else {
+      data[key] = value;
     }
   });
-}
+
+  return data;
+};
+
+const safeJson = async (response) => {
+  try {
+    return await response.json();
+  } catch {
+    return {};
+  }
+};
+
+const shouldUseFallback = (error) =>
+  !error.status || [404, 405, 500, 501, 502, 503, 504].includes(error.status);
+
+const showFormFeedback = (feedback, message, type) => {
+  if (!feedback) return;
+  feedback.hidden = false;
+  feedback.textContent = message;
+  feedback.className = `form-feedback is-${type}`;
+};
+
+const setButtonState = (button, isSending) => {
+  if (!button) return;
+
+  if (!button.dataset.originalHtml) {
+    button.dataset.originalHtml = button.innerHTML;
+  }
+
+  button.disabled = isSending;
+  button.innerHTML = isSending ? "Sending..." : button.dataset.originalHtml;
+
+  if (!isSending && window.lucide) {
+    window.lucide.createIcons();
+  }
+};
+
+const submitLeadToApi = async (payload) => {
+  const response = await fetch(LEAD_API_ENDPOINT, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await safeJson(response);
+
+  if (!response.ok || data.ok !== true) {
+    const error = new Error(data.error || "Lead API request failed.");
+    error.status = response.ok ? 502 : response.status;
+    throw error;
+  }
+
+  return data;
+};
+
+const submitLeadToFallback = async (form, payload) => {
+  const formData = new FormData(form);
+
+  Object.entries(payload.metadata).forEach(([key, value]) => {
+    formData.set(key, value);
+  });
+
+  formData.set("form_type", payload.form_type);
+
+  const response = await fetch(form.dataset.fallbackEndpoint || FORM_FALLBACK_ENDPOINT, {
+    method: "POST",
+    body: formData,
+    headers: { Accept: "application/json" },
+  });
+  const data = await safeJson(response);
+
+  if (!response.ok) {
+    const error = new Error(data.message || "Lead fallback request failed.");
+    error.status = response.status;
+    throw error;
+  }
+
+  return data;
+};
+
+const redirectToThankYou = (form, payload) => {
+  const successUrl = form.dataset.successUrl;
+  if (!successUrl) return;
+
+  const url = new URL(successUrl, window.location.href);
+  url.searchParams.set("form", payload.form_type);
+
+  window.setTimeout(() => {
+    window.location.href = url.toString();
+  }, 650);
+};
+
+leadForms.forEach((form) => {
+  const feedback = form.querySelector(".form-feedback");
+  const submitBtn = form.querySelector('[type="submit"]');
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const lastSubmitTime = lastLeadSubmissionTimes.get(form) || 0;
+    if (Date.now() - lastSubmitTime < 3000) {
+      showFormFeedback(feedback, "Give it a moment before sending again.", "error");
+      return;
+    }
+
+    const formData = new FormData(form);
+    const fields = formDataToObject(formData);
+    const metadata = getLeadMetadata(form);
+    const payload = {
+      form_type: metadata.form_type,
+      fields,
+      metadata,
+    };
+
+    if (fields._honey) {
+      showFormFeedback(feedback, "Thanks - Pat will follow up within one business day.", "success");
+      form.reset();
+      return;
+    }
+
+    lastLeadSubmissionTimes.set(form, Date.now());
+    setButtonState(submitBtn, true);
+    if (feedback) feedback.hidden = true;
+
+    try {
+      try {
+        await submitLeadToApi(payload);
+      } catch (error) {
+        if (!shouldUseFallback(error)) throw error;
+        await submitLeadToFallback(form, payload);
+      }
+
+      showFormFeedback(feedback, "Thanks - Pat will follow up within one business day.", "success");
+      form.reset();
+      redirectToThankYou(form, payload);
+    } catch (error) {
+      showFormFeedback(
+        feedback,
+        error.message || "Something went wrong. Please call or email Pat directly.",
+        "error"
+      );
+    } finally {
+      setButtonState(submitBtn, false);
+    }
+  });
+});
 
 // Interactive map
 const mapEl = document.getElementById("areas-map");

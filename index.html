@@ -400,7 +400,26 @@
             what your home is worth, what's worth fixing before you list, and when to move.
           </p>
         </div>
-<form class="lead-form" id="valuation-form" novalidate>
+        <form
+          class="lead-form"
+          id="valuation-form"
+          method="POST"
+          action="https://formsubmit.co/patsellsflhomes@gmail.com"
+          data-lead-type="home_valuation"
+          data-fallback-endpoint="https://formsubmit.co/ajax/patsellsflhomes@gmail.com"
+          data-success-url="thank-you.html"
+        >
+          <input type="hidden" name="_subject" value="New home valuation request from PatSellsFLHomes.com" />
+          <input type="hidden" name="form_type" value="home_valuation" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://patsellsflhomes.com/thank-you.html" />
+          <div class="lead-form-trap" aria-hidden="true">
+            <label>
+              Leave this field blank
+              <input type="text" name="_honey" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
           <label>
             Name
             <input type="text" name="name" autocomplete="name" required />
@@ -411,7 +430,7 @@
           </label>
           <label>
             Property address
-            <input type="text" name="property-address" autocomplete="street-address" />
+            <input type="text" name="property_address" autocomplete="street-address" />
           </label>
           <label>
             Timeline
