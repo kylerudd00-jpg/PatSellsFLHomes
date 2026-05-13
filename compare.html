@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Compare South Florida neighborhoods side by side — price, lifestyle, schools, and more. Pat Magno's neighborhood comparison tool for Palm Beach County buyers." />
+    <meta property="og:title" content="Compare South Florida Neighborhoods | Pat Magno" />
+    <meta property="og:description" content="Pick two communities and see them side by side on price, lifestyle, schools, and more." />
+    <meta property="og:image" content="https://patsellsflhomes.com/assets/patforweb.jpg" />
+    <meta property="og:url" content="https://patsellsflhomes.com/compare.html" />
+    <title>Compare South Florida Neighborhoods | Pat Magno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav-shell" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="Pat Magno home">
+          <span class="brand-mark"><img src="assets/patforweb.jpg" alt="Pat Magno" class="brand-photo" /></span>
+          <span><strong>Pat Magno</strong><small>South Florida Real Estate</small></span>
+        </a>
+        <div class="nav-menu">
+          <a href="index.html#about">About</a>
+          <a href="buyer.html">Buy</a>
+          <a href="seller.html">Sell</a>
+          <a href="index.html#areas">Areas</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <a class="nav-cta" href="tel:+15612664444"><i data-lucide="phone"></i><span>(561) 266-4444</span></a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="compare-header">
+        <div class="compare-header-content">
+          <p class="eyebrow">Neighborhood Comparison</p>
+          <h1>Compare communities side by side.</h1>
+          <p>Pick two communities and see how they stack up across price, lifestyle, and what matters most to buyers.</p>
+        </div>
+      </div>
+
+      <div class="compare-body">
+        <a class="path-back" href="index.html#areas"><i data-lucide="arrow-left"></i> Back to all communities</a>
+
+        <div class="compare-selectors">
+          <div class="compare-selector-wrap">
+            <label for="area-a">First community</label>
+            <select id="area-a" class="compare-select"></select>
+          </div>
+          <div class="compare-vs">vs</div>
+          <div class="compare-selector-wrap">
+            <label for="area-b">Second community</label>
+            <select id="area-b" class="compare-select"></select>
+          </div>
+        </div>
+
+        <div class="compare-photos">
+          <div class="compare-photo" id="photo-a"></div>
+          <div class="compare-photo" id="photo-b"></div>
+        </div>
+
+        <div class="compare-table-wrap">
+          <table class="compare-table" id="compare-table">
+            <thead>
+              <tr>
+                <th class="compare-row-label"></th>
+                <th id="head-a"></th>
+                <th id="head-b"></th>
+              </tr>
+            </thead>
+            <tbody id="compare-tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="compare-guide-links">
+          <a class="button button-primary" id="guide-link-a" href="#">Read the full guide →</a>
+          <a class="button button-primary" id="guide-link-b" href="#">Read the full guide →</a>
+        </div>
+
+        <div class="compare-pat-note">
+          <img src="assets/patforweb.jpg" alt="Pat Magno" />
+          <div>
+            <strong>Still not sure?</strong>
+            <p>Numbers only tell part of the story. The way a neighborhood actually feels to live in — the traffic, the neighbors, the vibe on a Tuesday night — is something Pat can only describe in conversation.</p>
+            <a class="button button-primary" href="https://calendly.com/patsellsflhomes" target="_blank" rel="noreferrer">Schedule a call with Pat</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div><strong>Pat Magno</strong><span>Coldwell Banker Realty | Delray Beach</span><span class="footer-license">License # SL3436662</span></div>
+      <p>Equal Housing Opportunity · &copy; 2026 Pat Magno</p>
+    </footer>
+
+    <style>
+      .compare-header {
+        background: var(--evergreen);
+        color: white;
+        padding: clamp(100px, 12vw, 148px) clamp(24px, 5vw, 80px) clamp(40px, 6vw, 64px);
+      }
+      .compare-header .eyebrow { color: var(--brass); }
+      .compare-header h1 { color: white; font-size: clamp(2rem, 4vw, 3.2rem); }
+      .compare-header p { color: rgba(255,255,255,0.72); max-width: 520px; }
+      .compare-body {
+        margin: 0 auto;
+        max-width: 1100px;
+        padding: clamp(32px, 5vw, 64px) clamp(24px, 5vw, 48px);
+      }
+      .compare-selectors {
+        align-items: center;
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1fr auto 1fr;
+        margin-bottom: 32px;
+        margin-top: 32px;
+      }
+      .compare-selector-wrap { display: flex; flex-direction: column; gap: 6px; }
+      .compare-selector-wrap label {
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .compare-select {
+        background: var(--surface);
+        border: 1.5px solid var(--line);
+        border-radius: var(--radius);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 1rem;
+        font-weight: 700;
+        min-height: 48px;
+        padding: 0 14px;
+        width: 100%;
+        cursor: pointer;
+        transition: border-color 200ms ease;
+      }
+      .compare-select:focus { border-color: var(--evergreen); outline: none; }
+      .compare-vs {
+        color: var(--muted);
+        font-family: var(--display);
+        font-size: 1.6rem;
+        font-weight: 600;
+        text-align: center;
+      }
+      .compare-photos {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+        height: 220px;
+        margin-bottom: 32px;
+      }
+      .compare-photo {
+        background-position: center;
+        background-size: cover;
+        border-radius: var(--radius);
+        transition: background-image 300ms ease;
+      }
+      .compare-table-wrap {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      .compare-table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .compare-table th {
+        background: var(--ink);
+        color: white;
+        font-family: var(--display);
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 16px 20px;
+        text-align: center;
+      }
+      .compare-table th.compare-row-label { background: var(--ink); width: 30%; }
+      .compare-table td {
+        border-bottom: 1px solid var(--line);
+        padding: 14px 20px;
+        text-align: center;
+        vertical-align: top;
+      }
+      .compare-table td.compare-row-label {
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-align: left;
+        text-transform: uppercase;
+      }
+      .compare-table tr:last-child td { border-bottom: 0; }
+      .compare-table tr:nth-child(even) td { background: var(--mist); }
+      .compare-table tr:nth-child(even) td.compare-row-label { background: var(--mist); }
+      .compare-guide-links {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 24px;
+      }
+      .compare-guide-links .button-primary {
+        background: var(--evergreen);
+        border-color: var(--evergreen);
+        color: white;
+        justify-content: center;
+      }
+      .compare-pat-note {
+        align-items: flex-start;
+        background: var(--mist);
+        border-radius: var(--radius);
+        display: flex;
+        gap: 24px;
+        margin-top: 40px;
+        padding: 28px 32px;
+      }
+      .compare-pat-note img { border-radius: 50%; height: 64px; object-fit: cover; width: 64px; flex-shrink: 0; }
+      .compare-pat-note strong { display: block; font-size: 1rem; margin-bottom: 6px; }
+      .compare-pat-note p { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+      .compare-pat-note .button-primary { background: var(--evergreen); border-color: var(--evergreen); color: white; }
+      @media (max-width: 700px) {
+        .compare-selectors { grid-template-columns: 1fr; }
+        .compare-vs { display: none; }
+        .compare-guide-links { grid-template-columns: 1fr; }
+        .compare-pat-note { flex-direction: column; }
+      }
+    </style>
+
+    <script>
+      const AREAS = [
+        {
+          id: "delray",
+          name: "Delray Beach",
+          img: "assets/area-delray-beach.jpg",
+          guide: "delray-beach.html",
+          rows: {
+            "Typical price range": "$400K – $2M+",
+            "Best for": "Walkability lovers, coastal lifestyle, all ages",
+            "Vibe": "Lively, social, artsy",
+            "Beach access": "✓ Direct — 2 miles of public beach",
+            "Walkability": "★★★★★ Atlantic Ave is walkable",
+            "Schools": "Atlantic Community High, A-rated options",
+            "HOA culture": "Varies — from none to active",
+            "Nightlife & dining": "★★★★★ Best in county",
+            "Pat's take": "My home market for 20 years. There's nowhere quite like Atlantic Ave."
+          }
+        },
+        {
+          id: "bocaraton",
+          name: "Boca Raton",
+          img: "assets/area-boca-raton.jpg",
+          guide: "boca-raton.html",
+          rows: {
+            "Typical price range": "$350K – $5M+",
+            "Best for": "Families, professionals, golf & club lifestyle",
+            "Vibe": "Polished, resort-like, upscale",
+            "Beach access": "✓ Red Reef & South Beach Parks",
+            "Walkability": "★★★☆☆ Car-dependent outside Mizner",
+            "Schools": "Spanish River, Olympic Heights — top-rated",
+            "HOA culture": "Strong — most communities have active HOAs",
+            "Nightlife & dining": "★★★★☆ Mizner Park is excellent",
+            "Pat's take": "The go-to for families moving from the northeast. Schools are genuinely excellent."
+          }
+        },
+        {
+          id: "boynton",
+          name: "Boynton Beach",
+          img: "assets/area-boynton-beach.jpg",
+          guide: "boynton-beach.html",
+          rows: {
+            "Typical price range": "$250K – $900K",
+            "Best for": "Value buyers, first-timers, growing families",
+            "Vibe": "Laid-back, unpretentious, growing",
+            "Beach access": "✓ Oceanfront park with marina",
+            "Walkability": "★★☆☆☆ Mostly car-dependent",
+            "Schools": "Park Vista Community High — solid",
+            "HOA culture": "Moderate — many 55+ communities",
+            "Nightlife & dining": "★★★☆☆ Growing downtown scene",
+            "Pat's take": "Best value on the coast right now. Won't stay this way much longer."
+          }
+        },
+        {
+          id: "gulfstream",
+          name: "Gulf Stream",
+          img: "assets/area-gulf-stream.jpg",
+          guide: "gulf-stream.html",
+          rows: {
+            "Typical price range": "$3M – $20M+",
+            "Best for": "Ultra-high-net-worth buyers, maximum privacy",
+            "Vibe": "Exclusive, quiet, zero commercial",
+            "Beach access": "✓ Private — direct Atlantic frontage",
+            "Walkability": "★☆☆☆☆ Residential only",
+            "Schools": "Atlantic Community High; most families use private",
+            "HOA culture": "No HOA — town ordinances instead",
+            "Nightlife & dining": "★☆☆☆☆ None in town (Delray is 10 min)",
+            "Pat's take": "The most private address in Palm Beach County. Homes rarely list publicly."
+          }
+        },
+        {
+          id: "highland",
+          name: "Highland Beach",
+          img: "assets/area-highland-beach.jpg",
+          guide: "highland-beach.html",
+          rows: {
+            "Typical price range": "$500K – $4M+",
+            "Best for": "Condo buyers, snowbirds, beach-first lifestyle",
+            "Vibe": "Very quiet, residential, low-density",
+            "Beach access": "✓ Private — direct ocean access per building",
+            "Walkability": "★★★☆☆ A1A path is excellent",
+            "Schools": "Boca Raton Community High — solid",
+            "HOA culture": "Very active — condo associations run everything",
+            "Nightlife & dining": "★☆☆☆☆ None in town (Boca & Delray nearby)",
+            "Pat's take": "The quietest barrier island on the coast. Perfect lock-and-leave lifestyle."
+          }
+        },
+        {
+          id: "lakeworth",
+          name: "Lake Worth Beach",
+          img: "assets/area-lake-worth.jpg",
+          guide: "lake-worth.html",
+          rows: {
+            "Typical price range": "$200K – $800K",
+            "Best for": "Value seekers, artists, urban lifestyle on a budget",
+            "Vibe": "Eclectic, artistic, genuine",
+            "Beach access": "✓ Public beach with casino & pier",
+            "Walkability": "★★★★☆ Real walkable downtown",
+            "Schools": "Lake Worth High — improving",
+            "HOA culture": "Minimal — mostly older neighborhoods",
+            "Nightlife & dining": "★★★★☆ Diverse, independent restaurant scene",
+            "Pat's take": "The best-kept secret on the coast. Dollar-for-dollar, nothing comes close."
+          }
+        },
+        {
+          id: "wellington",
+          name: "Wellington",
+          img: "assets/area-wellington.jpg",
+          guide: "wellington.html",
+          rows: {
+            "Typical price range": "$350K – $3M+",
+            "Best for": "Horse people, families wanting space, inland buyers",
+            "Vibe": "Rural, spacious, equestrian",
+            "Beach access": "✗ 20–25 min drive to coast",
+            "Walkability": "★☆☆☆☆ Car essential",
+            "Schools": "Palm Beach Central High — A-rated",
+            "HOA culture": "Moderate — master-planned community",
+            "Nightlife & dining": "★★☆☆☆ Chain-heavy, limited independent scene",
+            "Pat's take": "You get twice the land for half the price. The polo scene is world-class."
+          }
+        },
+        {
+          id: "jupiter",
+          name: "Jupiter",
+          img: "assets/area-jupiter.jpg",
+          guide: "jupiter.html",
+          rows: {
+            "Typical price range": "$400K – $3M+",
+            "Best for": "Boaters, outdoors families, relaxed beach lifestyle",
+            "Vibe": "Relaxed, sporty, outdoorsy",
+            "Beach access": "✓ Carlin Park & Jupiter Beach Park",
+            "Walkability": "★★☆☆☆ Mostly car-dependent",
+            "Schools": "Jupiter High — consistently A-rated",
+            "HOA culture": "Moderate — varies by community",
+            "Nightlife & dining": "★★★☆☆ Waterfront spots, Guanabanas",
+            "Pat's take": "The best-kept secret at the north end of the county. Schools rival Boca."
+          }
+        }
+      ];
+
+      const areaMap = Object.fromEntries(AREAS.map(a => [a.id, a]));
+      const selectA = document.getElementById('area-a');
+      const selectB = document.getElementById('area-b');
+
+      AREAS.forEach((a, i) => {
+        const optA = new Option(a.name, a.id);
+        const optB = new Option(a.name, a.id);
+        selectA.add(optA);
+        selectB.add(optB);
+      });
+      selectA.value = 'delray';
+      selectB.value = 'bocaraton';
+
+      function render() {
+        const a = areaMap[selectA.value];
+        const b = areaMap[selectB.value];
+        document.getElementById('photo-a').style.backgroundImage = `url('${a.img}')`;
+        document.getElementById('photo-b').style.backgroundImage = `url('${b.img}')`;
+        document.getElementById('head-a').textContent = a.name;
+        document.getElementById('head-b').textContent = b.name;
+        document.getElementById('guide-link-a').href = a.guide;
+        document.getElementById('guide-link-a').textContent = `Read the ${a.name} guide →`;
+        document.getElementById('guide-link-b').href = b.guide;
+        document.getElementById('guide-link-b').textContent = `Read the ${b.name} guide →`;
+
+        const keys = Object.keys(a.rows);
+        const tbody = document.getElementById('compare-tbody');
+        tbody.innerHTML = keys.map(k => `
+          <tr>
+            <td class="compare-row-label">${k}</td>
+            <td>${a.rows[k]}</td>
+            <td>${b.rows[k] || '—'}</td>
+          </tr>
+        `).join('');
+      }
+
+      selectA.addEventListener('change', render);
+      selectB.addEventListener('change', render);
+      render();
+
+      document.addEventListener('DOMContentLoaded', () => lucide.createIcons());
+    </script>
+  </body>
+</html>

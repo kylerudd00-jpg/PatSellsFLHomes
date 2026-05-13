@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Answer 5 questions and find out which South Florida community is right for you. Pat Magno's neighborhood fit quiz for Palm Beach County buyers." />
+    <meta property="og:title" content="Which South Florida Neighborhood Fits You? | Pat Magno" />
+    <meta property="og:description" content="5 questions. One honest recommendation. Find your community in Palm Beach County." />
+    <meta property="og:image" content="https://patsellsflhomes.com/assets/patforweb.jpg" />
+    <meta property="og:url" content="https://patsellsflhomes.com/quiz.html" />
+    <title>Which South Florida Neighborhood Fits You? | Pat Magno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="quiz.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav-shell" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="Pat Magno home">
+          <span class="brand-mark"><img src="assets/patforweb.jpg" alt="Pat Magno" class="brand-photo" /></span>
+          <span><strong>Pat Magno</strong><small>South Florida Real Estate</small></span>
+        </a>
+        <div class="nav-menu">
+          <a href="index.html#about">About</a>
+          <a href="buyer.html">Buy</a>
+          <a href="seller.html">Sell</a>
+          <a href="index.html#areas">Areas</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <a class="nav-cta" href="tel:+15612664444"><i data-lucide="phone"></i><span>(561) 266-4444</span></a>
+      </nav>
+    </header>
+
+    <main id="main" class="quiz-main">
+      <div class="quiz-shell">
+
+        <!-- Intro screen -->
+        <div class="quiz-screen active" id="screen-intro">
+          <div class="quiz-intro-content">
+            <p class="eyebrow" style="color:var(--brass)">Neighborhood Finder</p>
+            <h1>Which South Florida community fits you?</h1>
+            <p>Five questions. One honest answer. Pat covers nine communities across Palm Beach County — this quiz points you to the right one based on how you actually want to live.</p>
+            <button class="button button-quiz-start" id="btn-start">
+              Find my neighborhood <span>→</span>
+            </button>
+            <p class="quiz-note">Takes about 90 seconds. No email required.</p>
+          </div>
+          <div class="quiz-intro-img" style="background-image: url('assets/area-delray-beach.jpg')"></div>
+        </div>
+
+        <!-- Question screens -->
+        <div class="quiz-screen" id="screen-questions">
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progress-fill"></div></div>
+          <div class="quiz-question-wrap">
+            <p class="quiz-step-label" id="step-label">Question 1 of 5</p>
+            <h2 class="quiz-question" id="question-text"></h2>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div class="quiz-nav">
+              <button class="quiz-btn-back" id="btn-back">← Back</button>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result screen -->
+        <div class="quiz-screen" id="screen-result">
+          <div class="quiz-result-img" id="result-img"></div>
+          <div class="quiz-result-content">
+            <p class="eyebrow" style="color:var(--brass)">Your Match</p>
+            <h2 id="result-name"></h2>
+            <p id="result-why"></p>
+            <div class="quiz-result-tags" id="result-tags"></div>
+            <div class="quiz-result-actions">
+              <a class="button button-primary" id="result-guide-link">Read the neighborhood guide →</a>
+              <a class="button button-secondary" href="index.html#contact">Talk to Pat</a>
+            </div>
+            <button class="quiz-retake" id="btn-retake">Retake the quiz</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div><strong>Pat Magno</strong><span>Coldwell Banker Realty | Delray Beach</span><span class="footer-license">License # SL3436662</span></div>
+      <p>Equal Housing Opportunity · &copy; 2026 Pat Magno</p>
+    </footer>
+
+    <script>
+      const QUESTIONS = [
+        {
+          text: "What matters most in your day-to-day life?",
+          options: [
+            { label: "Walkable streets, restaurants, things to do", scores: { delray: 3, lakeworthbeach: 2 } },
+            { label: "Privacy, quiet, and low-traffic streets", scores: { gulfstream: 3, highlandbeach: 2, wellington: 1 } },
+            { label: "Space, land, and room to breathe", scores: { wellington: 3, jupiter: 1 } },
+            { label: "Being close to the ocean every day", scores: { highlandbeach: 3, gulfstream: 2, delray: 1 } },
+            { label: "Great schools and family infrastructure", scores: { bocaraton: 3, jupiter: 2 } },
+          ]
+        },
+        {
+          text: "What's your target price range?",
+          options: [
+            { label: "Under $350K", scores: { lakeworthbeach: 3, boyntonbeach: 2 } },
+            { label: "$350K – $650K", scores: { boyntonbeach: 2, delray: 1, lakeworthbeach: 1, bocaraton: 1 } },
+            { label: "$650K – $1.2M", scores: { delray: 2, bocaraton: 2, jupiter: 2, highlandbeach: 1 } },
+            { label: "$1.2M+", scores: { gulfstream: 3, highlandbeach: 2, bocaraton: 1, delray: 1 } },
+          ]
+        },
+        {
+          text: "What kind of home are you looking for?",
+          options: [
+            { label: "Condo — low maintenance, lock-and-leave", scores: { highlandbeach: 3, boyntonbeach: 1, delray: 1 } },
+            { label: "Single-family with a yard", scores: { delray: 1, bocaraton: 1, jupiter: 2, wellington: 1 } },
+            { label: "Waterfront — dock, water views, or oceanfront", scores: { gulfstream: 3, jupiter: 2, delray: 1 } },
+            { label: "55+ active adult community", scores: { delray: 2, boyntonbeach: 2, bocaraton: 1 }, special: "55plus" },
+            { label: "Equestrian / large lot / acreage", scores: { wellington: 4 } },
+          ]
+        },
+        {
+          text: "How do you spend a typical weekend?",
+          options: [
+            { label: "Restaurants, bars, and walking around town", scores: { delray: 3, lakeworthbeach: 2 } },
+            { label: "On the water — boating, fishing, paddleboarding", scores: { jupiter: 3, gulfstream: 1, delray: 1 } },
+            { label: "Golf, tennis, and club life", scores: { bocaraton: 2, wellington: 1, boyntonbeach: 1 } },
+            { label: "Home, garden, and low-key weekends", scores: { wellington: 2, bocaraton: 1, highlandbeach: 1 } },
+            { label: "Beach walks, bike rides, outdoor everything", scores: { highlandbeach: 2, delray: 2, jupiter: 1 } },
+          ]
+        },
+        {
+          text: "How close do you need to be to the beach?",
+          options: [
+            { label: "Right on it — ocean or Intracoastal frontage", scores: { gulfstream: 3, highlandbeach: 3 } },
+            { label: "Within a mile — I want to walk or bike", scores: { delray: 2, bocaraton: 1, jupiter: 1 } },
+            { label: "Within 20 minutes is fine", scores: { boyntonbeach: 2, lakeworthbeach: 1, bocaraton: 1 } },
+            { label: "I don't care — I want value and space instead", scores: { wellington: 3, bocaraton: 1 } },
+          ]
+        }
+      ];
+
+      const COMMUNITIES = {
+        delray:        { name: "Delray Beach",       img: "assets/area-delray-beach.jpg",      guide: "delray-beach.html",        why: "You want a walkable, vibrant coastal town with real restaurants and a street scene you can actually enjoy. Delray Beach's Atlantic Avenue is as good as it gets in Palm Beach County for that combination.", tags: ["Walkable", "Coastal", "Lively downtown", "All price ranges"] },
+        bocaraton:     { name: "Boca Raton",          img: "assets/area-boca-raton.jpg",         guide: "boca-raton.html",           why: "Schools, upscale communities, and a polished lifestyle make Boca the natural landing spot for families and buyers who want the full South Florida package without roughing anything.", tags: ["Top schools", "Upscale", "Family-friendly", "Golf & clubs"] },
+        boyntonbeach:  { name: "Boynton Beach",       img: "assets/area-boynton-beach.jpg",      guide: "boynton-beach.html",        why: "You want coastal access and a real community feel without paying Delray Beach prices. Boynton is growing fast and still has value left — but not for much longer.", tags: ["Best value", "Coastal access", "Growing fast", "Approachable prices"] },
+        gulfstream:    { name: "Gulf Stream",          img: "assets/area-gulf-stream.jpg",        guide: "gulf-stream.html",          why: "You want the most private, exclusive coastal address in Palm Beach County. Gulf Stream is a town of 900 people, zero commercial development, and oceanfront estates that rarely list publicly.", tags: ["Ultra-private", "Oceanfront", "Estates", "$3M+"] },
+        highlandbeach: { name: "Highland Beach",      img: "assets/area-highland-beach.jpg",     guide: "highland-beach.html",       why: "A barrier island between Boca and Delray with direct Atlantic access, boutique condo buildings, and a pace that's genuinely quiet. You get the beach without the crowds.", tags: ["Oceanfront condos", "Very quiet", "Low density", "Lock-and-leave"] },
+        lakeworthbeach:{ name: "Lake Worth Beach",    img: "assets/area-lake-worth.jpg",         guide: "lake-worth.html",           why: "An arts-driven community with a real downtown, genuine diversity, and some of the best dollar-per-square-foot on the coast. The best-kept value story in Palm Beach County.", tags: ["Best value on coast", "Arts community", "Real downtown", "Diverse"] },
+        wellington:    { name: "Wellington",           img: "assets/area-wellington.jpg",         guide: "wellington.html",           why: "You want space, land, and prices that feel impossible by coastal standards. Wellington is equestrian country — polo fields, large lots, and a completely different pace of life 20 minutes from the beach.", tags: ["Equestrian", "Large lots", "Inland value", "Space & privacy"] },
+        jupiter:       { name: "Jupiter",              img: "assets/area-jupiter.jpg",            guide: "jupiter.html",              why: "A relaxed beach town at the northern end of Palm Beach County — great schools, boating culture, and a genuinely laid-back feel that's hard to find once you're south of Delray.", tags: ["Relaxed pace", "Great schools", "Boating", "Northern PBC"] },
+        palmbeach:     { name: "Palm Beach County",   img: "assets/area-palm-beach-county.jpg",  guide: "palm-beach-county.html",    why: "Your answers suggest you're weighing a few different areas and haven't narrowed down yet. Pat covers the full county — the best next step is a quick call to talk through what matters most to you.", tags: ["Explore all areas", "Talk to Pat", "Full county"] },
+      };
+
+      const SPECIAL = {
+        "55plus": { name: "55+ Communities", img: "assets/area-delray-beach.jpg", guide: "55-plus.html", why: "Your priorities point toward an active adult community. Palm Beach County has some of the best 55+ options in the country — from King's Point in Delray to Valencia Isles in Boynton. Pat is a Certified Senior Real Estate Specialist and knows them all.", tags: ["55+ specialist", "Active adult", "Delray & Boynton", "Wide price range"] }
+      };
+
+      let current = 0;
+      const answers = [];
+      let specialResult = null;
+
+      function showScreen(id) {
+        document.querySelectorAll('.quiz-screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+      }
+
+      function renderQuestion() {
+        const q = QUESTIONS[current];
+        document.getElementById('step-label').textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
+        document.getElementById('question-text').textContent = q.text;
+        document.getElementById('progress-fill').style.width = `${((current) / QUESTIONS.length) * 100}%`;
+        document.getElementById('btn-back').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+        const opts = document.getElementById('quiz-options');
+        opts.innerHTML = '';
+        q.options.forEach((opt, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-option';
+          btn.textContent = opt.label;
+          btn.addEventListener('click', () => selectOption(i, opt));
+          opts.appendChild(btn);
+        });
+      }
+
+      function selectOption(i, opt) {
+        document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+        document.querySelectorAll('.quiz-option')[i].classList.add('selected');
+        if (opt.special) specialResult = opt.special;
+        answers[current] = opt.scores;
+        setTimeout(() => advance(), 280);
+      }
+
+      function advance() {
+        if (current < QUESTIONS.length - 1) {
+          current++;
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      }
+
+      function showResult() {
+        document.getElementById('progress-fill').style.width = '100%';
+
+        if (specialResult && SPECIAL[specialResult]) {
+          displayResult(SPECIAL[specialResult]);
+          showScreen('screen-result');
+          return;
+        }
+
+        const totals = {};
+        answers.forEach(scoreMap => {
+          if (!scoreMap) return;
+          Object.entries(scoreMap).forEach(([key, val]) => {
+            totals[key] = (totals[key] || 0) + val;
+          });
+        });
+
+        const winner = Object.entries(totals).sort((a, b) => b[1] - a[1])[0];
+        const community = COMMUNITIES[winner ? winner[0] : 'palmbeach'] || COMMUNITIES['palmbeach'];
+        displayResult(community);
+        showScreen('screen-result');
+      }
+
+      function displayResult(c) {
+        document.getElementById('result-img').style.backgroundImage = `url('${c.img}')`;
+        document.getElementById('result-name').textContent = c.name;
+        document.getElementById('result-why').textContent = c.why;
+        const tagsEl = document.getElementById('result-tags');
+        tagsEl.innerHTML = c.tags.map(t => `<span class="result-tag">${t}</span>`).join('');
+        const guideLink = document.getElementById('result-guide-link');
+        guideLink.href = c.guide;
+        guideLink.textContent = `Read the ${c.name} guide →`;
+      }
+
+      document.getElementById('btn-start').addEventListener('click', () => {
+        renderQuestion();
+        showScreen('screen-questions');
+      });
+
+      document.getElementById('btn-back').addEventListener('click', () => {
+        if (current > 0) { current--; specialResult = null; renderQuestion(); }
+      });
+
+      document.getElementById('btn-retake').addEventListener('click', () => {
+        current = 0; answers.length = 0; specialResult = null;
+        renderQuestion();
+        showScreen('screen-questions');
+      });
+
+      document.addEventListener('DOMContentLoaded', () => lucide.createIcons());
+    </script>
+  </body>
+</html>

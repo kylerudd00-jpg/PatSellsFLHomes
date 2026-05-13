@@ -1913,6 +1913,87 @@ h3 {
   }
 }
 
+/* ─── Market Pulse ─── */
+
+.market-pulse {
+  background: var(--evergreen);
+  color: white;
+}
+
+.market-pulse-inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vw, 24px);
+  margin: 0 auto;
+  max-width: 1240px;
+  padding: clamp(28px, 4vw, 44px) clamp(20px, 5vw, 60px);
+}
+
+.market-pulse-label {
+  align-items: center;
+  color: rgba(255,255,255,0.6);
+  display: flex;
+  font-size: 0.72rem;
+  font-weight: 800;
+  gap: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pulse-dot {
+  animation: pulse-blink 2s ease infinite;
+  background: #4ade80;
+  border-radius: 50%;
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+}
+
+@keyframes pulse-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.market-pulse-stats {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.pulse-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 24px;
+}
+
+.pulse-stat strong {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pulse-stat span {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.pulse-commentary {
+  border-top: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.72);
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.65;
+  margin: 0;
+  padding-top: clamp(14px, 2vw, 20px);
+}
+
+@media (max-width: 680px) {
+  .market-pulse-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
 /* ─── Hero sub-CTA ─── */
 
 .hero-sub-cta {
@@ -2023,6 +2104,58 @@ h3 {
 
 .listings-footer a:hover svg {
   transform: translateX(4px);
+}
+
+/* ─── Area tools strip ─── */
+
+.area-tools {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+
+.area-tool-btn {
+  align-items: center;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  display: flex;
+  gap: 16px;
+  padding: 18px 22px;
+  text-decoration: none;
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.area-tool-btn:hover {
+  border-color: var(--evergreen);
+  box-shadow: 0 6px 24px rgba(17,22,20,0.08);
+  transform: translateY(-2px);
+}
+
+.area-tool-btn svg {
+  color: var(--evergreen);
+  flex-shrink: 0;
+  height: 22px;
+  width: 22px;
+}
+
+.area-tool-btn strong {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.area-tool-btn small {
+  color: var(--muted);
+  display: block;
+  font-size: 0.76rem;
+}
+
+@media (max-width: 600px) {
+  .area-tools { grid-template-columns: 1fr; }
 }
 
 /* ─── Buyer / Seller / Specialty page styles ─── */
