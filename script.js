@@ -332,15 +332,20 @@ if (valuationForm) {
 const mapEl = document.getElementById("areas-map");
 if (mapEl && typeof L !== "undefined") {
   const map = L.map("areas-map", {
-    center: [26.68, -80.13],
-    zoom: 10,
+    center: [26.55, -80.14],
+    zoom: 9,
     scrollWheelZoom: false,
     zoomControl: true,
   });
 
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    attribution: "&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN",
     maxZoom: 19,
+  }).addTo(map);
+
+  L.tileLayer("https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 19,
+    opacity: 0.7,
   }).addTo(map);
 
   const cityPinIcon = L.divIcon({
@@ -375,6 +380,17 @@ if (mapEl && typeof L !== "undefined") {
     { name: "Manalapan",          coords: [26.5688, -80.0451], price: "$5M+ typical",  url: "palm-beach-county.html" },
     { name: "Royal Palm Beach",   coords: [26.7026, -80.2254], price: "~$430K median", url: "palm-beach-county.html" },
     { name: "Juno Beach",         coords: [26.8807, -80.0539], price: "~$500K median", url: "palm-beach-county.html" },
+    { name: "Hobe Sound",         coords: [27.0650, -80.1360], price: "~$550K median", url: "palm-beach-county.html" },
+    { name: "Hillsboro Beach",    coords: [26.2996, -80.0743], price: "$1.5M+ median", url: "palm-beach-county.html" },
+    { name: "Deerfield Beach",    coords: [26.3184, -80.0998], price: "~$350K median", url: "palm-beach-county.html" },
+    { name: "Lighthouse Point",   coords: [26.2759, -80.0870], price: "~$700K median", url: "palm-beach-county.html" },
+    { name: "Pompano Beach",      coords: [26.2379, -80.1248], price: "~$400K median", url: "palm-beach-county.html" },
+    { name: "Lauderdale-by-the-Sea", coords: [26.1921, -80.0968], price: "~$500K median", url: "palm-beach-county.html" },
+    { name: "Fort Lauderdale",    coords: [26.1224, -80.1373], price: "~$550K median", url: "palm-beach-county.html" },
+    { name: "Wilton Manors",      coords: [26.1595, -80.1323], price: "~$600K median", url: "palm-beach-county.html" },
+    { name: "Coconut Creek",      coords: [26.2956, -80.1787], price: "~$380K median", url: "palm-beach-county.html" },
+    { name: "Coral Springs",      coords: [26.2707, -80.2707], price: "~$480K median", url: "palm-beach-county.html" },
+    { name: "Parkland",           coords: [26.3087, -80.2402], price: "~$850K median", url: "palm-beach-county.html" },
   ];
 
   const neighborhoods = [
@@ -455,7 +471,29 @@ if (mapEl && typeof L !== "undefined") {
     // Manalapan
     { name: "Manalapan Estates",      coords: [26.5688, -80.0440], type: "Ultra-Luxury · Private",   price: "$3M–$25M+",   url: "palm-beach-county.html", desc: "One of the most exclusive addresses in Florida. Oceanfront-to-Intracoastal estates on a gated barrier island." },
     // North Palm Beach
-    { name: "Old Port Cove",          coords: [26.8162, -80.0640], type: "Marina · Waterfront",      price: "$400K–$1.5M", url: "palm-beach-county.html", desc: "Marina community with Intracoastal views, boat slips, and a short drive to the beach." },
+    { name: "Old Port Cove",          coords: [26.8162, -80.0640], type: "Marina · Waterfront",      price: "$400K–$1.5M",  url: "palm-beach-county.html", desc: "Marina community with Intracoastal views, boat slips, and a short drive to the beach." },
+    // Hobe Sound / Martin County border
+    { name: "Medalist Village",       coords: [27.0548, -80.1625], type: "Golf · Greg Norman Design", price: "$400K–$2M+",  url: "palm-beach-county.html", desc: "Exclusive golf community built around the world-famous Medalist Golf Club. Tiger Woods trained here for years." },
+    { name: "Jupiter Inlet Colony",   coords: [26.9401, -80.0697], type: "Oceanfront · 400 Homes",   price: "$1M–$8M+",    url: "jupiter.html",           desc: "The smallest municipality in Palm Beach County. Private oceanfront enclave — every home is steps from the Atlantic." },
+    // Hillsboro Beach / Deerfield area
+    { name: "Hillsboro Shores",       coords: [26.2970, -80.0766], type: "Oceanfront · Quiet",        price: "$600K–$3M+",  url: "palm-beach-county.html", desc: "Low-key oceanfront strip between Boca and Pompano. Sleeper community with direct beach access and very little development." },
+    { name: "Deer Creek CC",          coords: [26.3340, -80.1454], type: "Golf · Gated",              price: "$150K–$500K",  url: "palm-beach-county.html", desc: "Well-kept gated golf community popular with snowbirds. Condos and villas at accessible price points." },
+    // Lighthouse Point
+    { name: "LHP Deep-Water Canals",  coords: [26.2759, -80.0835], type: "Boating · No Fixed Bridges", price: "$500K–$3M+", url: "palm-beach-county.html", desc: "Every home has a dock. Deep-water canals with no fixed bridges — bring a large boat. One of Broward's best boating addresses." },
+    // Pompano Beach
+    { name: "Palm Aire CC",           coords: [26.2452, -80.1329], type: "Bundled Golf · Active Adult", price: "$100K–$450K", url: "55-plus.html",          desc: "Bundled golf community — green fees included in HOA. Very active lifestyle, great dollars-per-square-foot." },
+    { name: "Pompano Isles",          coords: [26.2560, -80.1050], type: "Waterfront · Canal Homes",  price: "$350K–$1.5M", url: "palm-beach-county.html", desc: "Canal-front single-family homes with boat dockage. Solid value compared to Fort Lauderdale's waterfront neighborhoods." },
+    // Fort Lauderdale
+    { name: "Las Olas",               coords: [26.1193, -80.1290], type: "Walkable · Canal Homes",    price: "$400K–$3M+",  url: "palm-beach-county.html", desc: "Fort Lauderdale's signature boulevard. Canal-front homes, walkable restaurants, gallery district, and direct Intracoastal access." },
+    { name: "Victoria Park",          coords: [26.1284, -80.1230], type: "Historic Bungalows",         price: "$500K–$1.5M", url: "palm-beach-county.html", desc: "Beloved neighborhood of craftsman homes just north of downtown FTL. Walkable, tree-lined, tight-knit community." },
+    { name: "Rio Vista",              coords: [26.1052, -80.1280], type: "Deepwater · No Fixed Bridges", price: "$800K–$5M+", url: "palm-beach-county.html", desc: "South of downtown FTL. Deep-water canals, no fixed bridges, direct ocean access. One of South Florida's premier boating addresses." },
+    { name: "Harbor Beach",           coords: [26.0991, -80.1090], type: "Gated · Yachting",           price: "$2M–$15M+",   url: "palm-beach-county.html", desc: "Private gated community with its own beach club and marina. Ocean-to-Intracoastal lots, absolute privacy, world-class dockage." },
+    { name: "Coral Ridge",            coords: [26.1450, -80.1070], type: "Intracoastal Dockage",       price: "$500K–$2.5M", url: "palm-beach-county.html", desc: "Established FTL neighborhood with deepwater canal access. Strong boating culture and a mix of single-family and condos." },
+    { name: "Wilton Manors Village",  coords: [26.1595, -80.1370], type: "Walkable · Community Pride",  price: "$400K–$1.2M", url: "palm-beach-county.html", desc: "Known for its walkable Wilton Drive dining scene and strong community identity. Excellent pride of ownership." },
+    // Coral Springs / Parkland
+    { name: "Parkland Golf & CC",     coords: [26.3145, -80.2534], type: "Golf · Exclusive Schools",   price: "$600K–$2.5M+", url: "palm-beach-county.html", desc: "One of Broward's most sought-after addresses. Private golf, top-rated schools, and strict HOA standards." },
+    { name: "Heron Bay",              coords: [26.3320, -80.2416], type: "Master-Planned · Resort",    price: "$550K–$1.8M", url: "palm-beach-county.html", desc: "Large master-planned community in Coral Springs with multiple gated sub-communities, resort pools, and fitness clubs." },
+    { name: "Boca Pointe",            coords: [26.3353, -80.1237], type: "Golf · South Boca",          price: "$150K–$600K",  url: "boca-raton.html",        desc: "Popular bundled golf community in south Boca. Mandatory membership included in dues. Mix of condos, villas, and homes." },
   ];
 
   const cityLayer = L.layerGroup().addTo(map);
