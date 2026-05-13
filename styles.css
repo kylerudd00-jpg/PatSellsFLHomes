@@ -759,14 +759,32 @@ h3 {
 
 .cert-list {
   border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   margin-top: 16px;
   padding-top: 14px;
 }
 
 .cert-list li {
-  color: var(--muted);
+  align-items: center;
+  color: var(--ink);
+  display: flex;
   font-size: 0.8rem;
-  line-height: 1.8;
+  gap: 10px;
+}
+
+.cert-acronym {
+  background: var(--brass);
+  border-radius: 2px;
+  color: white;
+  flex-shrink: 0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  min-width: 44px;
+  padding: 3px 7px;
+  text-align: center;
 }
 
 .testimonials-section {

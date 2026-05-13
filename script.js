@@ -332,7 +332,7 @@ if (valuationForm) {
 const mapEl = document.getElementById("areas-map");
 if (mapEl && typeof L !== "undefined") {
   const map = L.map("areas-map", {
-    center: [26.65, -80.15],
+    center: [26.68, -80.13],
     zoom: 10,
     scrollWheelZoom: false,
     zoomControl: true,
@@ -358,15 +358,23 @@ if (mapEl && typeof L !== "undefined") {
   });
 
   const cities = [
-    { name: "Delray Beach",      coords: [26.4615, -80.0728], price: "$650K median",  url: "delray-beach.html" },
-    { name: "Boca Raton",        coords: [26.3683, -80.1289], price: "$850K median",  url: "boca-raton.html" },
-    { name: "Boynton Beach",     coords: [26.5317, -80.0905], price: "$430K median",  url: "boynton-beach.html" },
-    { name: "Gulf Stream",       coords: [26.5038, -80.0481], price: "$3M+ typical",  url: "gulf-stream.html" },
-    { name: "Highland Beach",    coords: [26.4087, -80.0723], price: "$700K median",  url: "highland-beach.html" },
-    { name: "Palm Beach County", coords: [26.7153, -80.0534], price: "County-wide",   url: "palm-beach-county.html" },
-    { name: "Lake Worth Beach",  coords: [26.6198, -80.0590], price: "~$380K median", url: "lake-worth.html" },
-    { name: "Wellington",        coords: [26.6590, -80.2689], price: "~$550K median", url: "wellington.html" },
-    { name: "Jupiter",           coords: [26.9342, -80.0942], price: "~$650K median", url: "jupiter.html" },
+    { name: "Delray Beach",       coords: [26.4615, -80.0728], price: "$650K median",  url: "delray-beach.html" },
+    { name: "Boca Raton",         coords: [26.3683, -80.1289], price: "$850K median",  url: "boca-raton.html" },
+    { name: "Boynton Beach",      coords: [26.5317, -80.0905], price: "$430K median",  url: "boynton-beach.html" },
+    { name: "Gulf Stream",        coords: [26.5038, -80.0481], price: "$3M+ typical",  url: "gulf-stream.html" },
+    { name: "Highland Beach",     coords: [26.4087, -80.0723], price: "$700K median",  url: "highland-beach.html" },
+    { name: "Palm Beach County",  coords: [26.6500, -80.1800], price: "County-wide",   url: "palm-beach-county.html" },
+    { name: "Lake Worth Beach",   coords: [26.6198, -80.0590], price: "~$380K median", url: "lake-worth.html" },
+    { name: "Wellington",         coords: [26.6590, -80.2689], price: "~$550K median", url: "wellington.html" },
+    { name: "Jupiter",            coords: [26.9342, -80.0942], price: "~$650K median", url: "jupiter.html" },
+    { name: "West Palm Beach",    coords: [26.7153, -80.0534], price: "$520K median",  url: "palm-beach-county.html" },
+    { name: "Palm Beach Gardens", coords: [26.8234, -80.1233], price: "$700K median",  url: "palm-beach-county.html" },
+    { name: "North Palm Beach",   coords: [26.8183, -80.0696], price: "$650K median",  url: "palm-beach-county.html" },
+    { name: "Singer Island",      coords: [26.7861, -80.0346], price: "$600K median",  url: "palm-beach-county.html" },
+    { name: "Ocean Ridge",        coords: [26.5195, -80.0487], price: "$2M+ typical",  url: "palm-beach-county.html" },
+    { name: "Manalapan",          coords: [26.5688, -80.0451], price: "$5M+ typical",  url: "palm-beach-county.html" },
+    { name: "Royal Palm Beach",   coords: [26.7026, -80.2254], price: "~$430K median", url: "palm-beach-county.html" },
+    { name: "Juno Beach",         coords: [26.8807, -80.0539], price: "~$500K median", url: "palm-beach-county.html" },
   ];
 
   const neighborhoods = [
@@ -400,11 +408,54 @@ if (mapEl && typeof L !== "undefined") {
     { name: "Tequesta",                coords: [26.9684, -80.1016], type: "Village · Waterway",      price: "$350K–$1.5M", url: "jupiter.html",      desc: "Quiet village feel at the county's northern tip. Waterway access, older homes, low-key." },
     { name: "Jupiter Farms",           coords: [26.9293, -80.1620], type: "Rural · Acreage",         price: "$400K–$1.2M", url: "jupiter.html",      desc: "Rural lots where horses are welcome. The most space for the money in northern PBC." },
     // Gulf Stream
-    { name: "Ocean Blvd (A1A)",        coords: [26.5038, -80.0481], type: "Oceanfront · Estates",    price: "$4M–$20M+",  url: "gulf-stream.html",  desc: "The most coveted street in Gulf Stream. Direct Atlantic frontage, estate lots." },
-    { name: "Polo Drive",              coords: [26.5010, -80.0530], type: "Intracoastal · Dockage",   price: "$2M–$8M+",   url: "gulf-stream.html",  desc: "Intracoastal side with deepwater dockage and sunset views. More value than the ocean side." },
+    { name: "Ocean Blvd (A1A)",        coords: [26.5038, -80.0481], type: "Oceanfront · Estates",      price: "$4M–$20M+",   url: "gulf-stream.html",       desc: "The most coveted street in Gulf Stream. Direct Atlantic frontage, estate lots." },
+    { name: "Polo Drive",              coords: [26.5010, -80.0530], type: "Intracoastal · Dockage",     price: "$2M–$8M+",    url: "gulf-stream.html",       desc: "Intracoastal side with deepwater dockage and sunset views. More value than the ocean side." },
     // Highland Beach
-    { name: "Toscana",                 coords: [26.4250, -80.0718], type: "Oceanfront · High-Rise",  price: "$700K–$3M+", url: "highland-beach.html",desc: "Luxury oceanfront tower with resort amenities and full concierge service." },
-    { name: "Byrd Beach Club",         coords: [26.4180, -80.0720], type: "Oceanfront · Mid-Rise",   price: "$500K–$1.5M", url: "highland-beach.html",desc: "Boutique mid-rise with direct beach access and a tight-knit community feel." },
+    { name: "Toscana",                 coords: [26.4250, -80.0718], type: "Oceanfront · High-Rise",    price: "$700K–$3M+",  url: "highland-beach.html",    desc: "Luxury oceanfront tower with resort amenities and full concierge service." },
+    { name: "Byrd Beach Club",         coords: [26.4180, -80.0720], type: "Oceanfront · Mid-Rise",     price: "$500K–$1.5M", url: "highland-beach.html",    desc: "Boutique mid-rise with direct beach access and a tight-knit community feel." },
+    // West Palm Beach
+    { name: "Northwood",               coords: [26.7311, -80.0681], type: "Historic Arts District",    price: "$350K–$850K",  url: "palm-beach-county.html", desc: "Revived arts neighborhood north of downtown WPB. Great walkability, eclectic bungalows, galleries." },
+    { name: "Flamingo Park",           coords: [26.7175, -80.0683], type: "Historic · Bungalows",      price: "$450K–$950K",  url: "palm-beach-county.html", desc: "Beloved historic district with charming bungalows and deep community pride." },
+    { name: "El Cid",                  coords: [26.7130, -80.0755], type: "Mediterranean Estates",     price: "$700K–$3.5M+", url: "palm-beach-county.html", desc: "Elegant Intracoastal-adjacent neighborhood known for Mediterranean Revival architecture and grand lots." },
+    { name: "SoSo",                    coords: [26.6900, -80.0683], type: "Arts · Antique Row",        price: "$320K–$750K",  url: "palm-beach-county.html", desc: "South of Southern. Antique dealers, independent restaurants, and a creative community vibe." },
+    // Palm Beach (island)
+    { name: "Palm Beach",              coords: [26.7075, -80.0395], type: "Oceanfront Estates · Old Money", price: "$3M–$50M+", url: "palm-beach-county.html", desc: "The island. Worth Avenue, historic mansions, ocean-to-lake estates. The pinnacle of Palm Beach County luxury." },
+    { name: "Palm Beach North End",    coords: [26.7400, -80.0330], type: "Quieter Estates",           price: "$2M–$12M+",   url: "palm-beach-county.html", desc: "Calmer end of the island with large lots, more privacy, and direct ocean or Intracoastal access." },
+    // Palm Beach Gardens
+    { name: "PGA National",           coords: [26.8334, -80.1433], type: "Golf · Master-Planned",     price: "$350K–$2M",   url: "palm-beach-county.html", desc: "Home of the Honda Classic. Five golf courses, resort amenities, and strong resale demand." },
+    { name: "Mirasol",                coords: [26.8511, -80.1328], type: "Ultra-Luxury Golf",         price: "$1.5M–$8M+",  url: "palm-beach-county.html", desc: "Private ultra-luxury country club with two Fazio courses. Some of the finest golf real estate in the county." },
+    { name: "Frenchman's Creek",      coords: [26.8764, -80.1005], type: "Marina · Gated",            price: "$700K–$3M+",  url: "palm-beach-county.html", desc: "Gated community with a full-service marina, golf, and tennis. Popular with boaters." },
+    { name: "BallenIsles",            coords: [26.8284, -80.1465], type: "Golf · Gated",              price: "$400K–$2.5M", url: "palm-beach-county.html", desc: "Three-course gated golf community with a renovated clubhouse and strong activity calendar." },
+    { name: "Alton",                  coords: [26.8550, -80.1153], type: "New Construction",          price: "$550K–$1.6M", url: "palm-beach-county.html", desc: "Newer master-planned community with contemporary homes, walkable design, and modern finishes." },
+    // Jupiter additional
+    { name: "Jonathan's Landing",     coords: [26.9050, -80.1360], type: "Gated Marina · Golf",      price: "$450K–$3M+",  url: "jupiter.html",           desc: "Prestigious gated community with a private marina, three golf courses, and a clubhouse." },
+    { name: "Jupiter Island",         coords: [26.9680, -80.0698], type: "Ultra-Luxury Barrier Island", price: "$5M–$60M+", url: "jupiter.html",           desc: "One of the wealthiest zip codes in the U.S. Narrow barrier island, absolute privacy, ocean-to-river estates." },
+    { name: "Pennock Point",          coords: [26.9153, -80.0971], type: "Waterfront Peninsula",      price: "$900K–$5M+",  url: "jupiter.html",           desc: "Serene finger peninsula surrounded by the Loxahatchee River. Some of Jupiter's most private waterfront addresses." },
+    // Singer Island
+    { name: "Singer Island Condos",   coords: [26.7780, -80.0380], type: "Oceanfront · High-Rise",   price: "$350K–$2.5M+",url: "palm-beach-county.html", desc: "Oceanfront towers with sweeping Atlantic views. Strong rental market and resort-style amenities." },
+    // More Boca Raton
+    { name: "Woodfield Country Club", coords: [26.4170, -80.1700], type: "Golf · Gated · Luxury",    price: "$700K–$3.5M+",url: "boca-raton.html",        desc: "Prestigious private golf community. Well-maintained estates, strong HOA, and a tight-knit membership." },
+    { name: "St. Andrews CC",         coords: [26.4065, -80.1775], type: "Ultra-Private Golf",        price: "$900K–$5M+",  url: "boca-raton.html",        desc: "One of Boca's most exclusive enclaves. Private golf, limited membership, impeccable landscaping." },
+    { name: "Boca del Mar",           coords: [26.3420, -80.1200], type: "Golf · Mature Community",  price: "$200K–$650K", url: "boca-raton.html",        desc: "Established community with a mix of condos and single-family. Good value in south Boca." },
+    // More Delray Beach
+    { name: "The Bridges",            coords: [26.4880, -80.1450], type: "New Luxury · GL Homes",    price: "$750K–$2.5M+",url: "delray-beach.html",      desc: "One of GL Homes' flagship luxury communities. Resort-style amenities, newer construction." },
+    { name: "Seacrest",               coords: [26.4560, -80.0800], type: "Arts · Walkable",          price: "$280K–$650K", url: "delray-beach.html",      desc: "Diverse, walkable neighborhood close to downtown. A favorite among first-time buyers and artists." },
+    // More Wellington
+    { name: "Olympia",                coords: [26.6820, -80.2700], type: "Master-Planned · Schools", price: "$420K–$1.2M", url: "wellington.html",        desc: "Well-run master-planned community with top-rated schools and a strong community association." },
+    { name: "Equestrian Club Estates",coords: [26.6290, -80.2650], type: "Equestrian Estates",       price: "$500K–$3M+",  url: "wellington.html",        desc: "Direct access to the equestrian trail system. Bring your horses — paddocks and stalls on site." },
+    // Royal Palm Beach / Loxahatchee
+    { name: "The Acreage",            coords: [26.7200, -80.2900], type: "Rural · Large Lots",       price: "$350K–$900K", url: "palm-beach-county.html", desc: "One-to-five acre lots west of Royal Palm Beach. Rural character, lower density, room to breathe." },
+    // More Boynton Beach
+    { name: "Hunters Run",            coords: [26.5120, -80.1350], type: "55+ Golf",                 price: "$140K–$450K", url: "55-plus.html",           desc: "Bundled golf community for active adults. Three 9-hole courses and one of the most active clubhouses in Boynton." },
+    { name: "Atlantis",               coords: [26.5950, -80.1000], type: "Small City · Golf",        price: "$350K–$900K", url: "palm-beach-county.html", desc: "Tiny incorporated city with its own golf course and low traffic. Like a private enclave inside Palm Beach County." },
+    // South Palm Beach
+    { name: "South Palm Beach",       coords: [26.5900, -80.0514], type: "Oceanfront · Small Town",  price: "$250K–$950K", url: "palm-beach-county.html", desc: "Narrow strip of oceanfront condos between Lantana and Manalapan. Quiet, walkable, and undervalued." },
+    // Ocean Ridge
+    { name: "Ocean Ridge",            coords: [26.5150, -80.0498], type: "Oceanfront Estates",       price: "$600K–$4M+",  url: "palm-beach-county.html", desc: "Quiet incorporated town with strict zoning, low density, and ocean-to-Intracoastal lot opportunities." },
+    // Manalapan
+    { name: "Manalapan Estates",      coords: [26.5688, -80.0440], type: "Ultra-Luxury · Private",   price: "$3M–$25M+",   url: "palm-beach-county.html", desc: "One of the most exclusive addresses in Florida. Oceanfront-to-Intracoastal estates on a gated barrier island." },
+    // North Palm Beach
+    { name: "Old Port Cove",          coords: [26.8162, -80.0640], type: "Marina · Waterfront",      price: "$400K–$1.5M", url: "palm-beach-county.html", desc: "Marina community with Intracoastal views, boat slips, and a short drive to the beach." },
   ];
 
   const cityLayer = L.layerGroup().addTo(map);
