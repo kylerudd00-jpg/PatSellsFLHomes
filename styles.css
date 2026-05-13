@@ -117,17 +117,16 @@ select {
 
 .nav-shell {
   align-items: center;
-  -webkit-backdrop-filter: blur(42px) saturate(2.15) contrast(1.08);
-  backdrop-filter: blur(42px) saturate(2.15) contrast(1.08);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.1) 58%, rgba(255, 255, 255, 0.06)),
-    rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  border-radius: 20px;
+  -webkit-backdrop-filter: blur(56px) saturate(1.8) brightness(1.04);
+  backdrop-filter: blur(56px) saturate(1.8) brightness(1.04);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 22px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.64),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.14),
-    0 22px 60px rgba(17, 22, 20, 0.16);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.78),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 28px 64px rgba(17, 22, 20, 0.15),
+    0 4px 10px rgba(17, 22, 20, 0.06);
   display: grid;
   gap: 14px;
   grid-template-columns: minmax(204px, auto) minmax(330px, 1fr) auto;
@@ -147,10 +146,16 @@ select {
 
 .nav-shell::before {
   background:
-    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.34), transparent 28%),
-    radial-gradient(circle at 74% 0%, rgba(255, 255, 255, 0.16), transparent 26%),
-    linear-gradient(110deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.06) 38%, rgba(255, 255, 255, 0.02) 62%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.15), transparent 54%);
+    radial-gradient(ellipse at 7% -30%, rgba(255, 255, 255, 0.55), transparent 40%),
+    radial-gradient(ellipse at 80% -20%, rgba(255, 255, 255, 0.26), transparent 36%),
+    linear-gradient(
+      108deg,
+      rgba(255, 255, 255, 0.44) 0%,
+      rgba(255, 255, 255, 0.15) 22%,
+      rgba(255, 255, 255, 0.04) 48%,
+      transparent 62%
+    );
+  border-radius: inherit;
   content: "";
   inset: 0;
   pointer-events: none;
@@ -163,14 +168,13 @@ select {
 }
 
 .site-header.is-scrolled .nav-shell {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.14) 58%, rgba(255, 255, 255, 0.08)),
-    rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.44);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.16),
-    0 18px 44px rgba(17, 22, 20, 0.13);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
+    0 20px 48px rgba(17, 22, 20, 0.12),
+    0 3px 8px rgba(17, 22, 20, 0.05);
   min-height: 58px;
 }
 
@@ -248,14 +252,10 @@ select {
 
 .nav-menu {
   align-items: center;
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  backdrop-filter: blur(20px) saturate(1.8);
-  background: rgba(255, 255, 255, 0.13);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 1px 0 rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
   display: flex;
   gap: 2px;
   justify-content: center;
@@ -305,14 +305,13 @@ select {
 }
 
 .nav-cta {
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  backdrop-filter: blur(20px) saturate(1.8);
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 8px 24px rgba(17, 22, 20, 0.08);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+    0 6px 18px rgba(17, 22, 20, 0.1);
   color: var(--ink);
   font-size: 0.83rem;
   font-weight: 800;
@@ -327,24 +326,25 @@ select {
 }
 
 .nav-cta:hover {
-  background: rgba(255, 255, 255, 0.32);
-  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.44);
+  border-color: rgba(255, 255, 255, 0.6);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    0 10px 28px rgba(17, 22, 20, 0.1);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.18),
+    0 8px 24px rgba(17, 22, 20, 0.1);
   color: var(--evergreen);
   transform: translateY(-1px);
 }
 
 .site-header.is-scrolled .nav-cta {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.32);
+  border-color: rgba(255, 255, 255, 0.52);
   color: var(--ink);
 }
 
 .site-header.is-scrolled .nav-cta:hover {
-  background: rgba(255, 255, 255, 0.34);
-  border-color: rgba(255, 255, 255, 0.46);
+  background: rgba(255, 255, 255, 0.46);
+  border-color: rgba(255, 255, 255, 0.62);
   color: var(--evergreen);
 }
 
@@ -359,11 +359,10 @@ select {
 
 .nav-toggle {
   align-items: center;
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  backdrop-filter: blur(20px) saturate(1.8);
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.44);
   border-radius: 50%;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
   color: var(--ink);
   cursor: pointer;
   display: none;
@@ -373,8 +372,8 @@ select {
 }
 
 .site-header.is-scrolled .nav-toggle {
-  background: rgba(255, 255, 255, 0.22);
-  border-color: rgba(255, 255, 255, 0.36);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.48);
 }
 
 .hero {
