@@ -343,27 +343,75 @@ if (mapEl && typeof L !== "undefined") {
     maxZoom: 19,
   }).addTo(map);
 
-  const pinIcon = L.divIcon({
+  const cityPinIcon = L.divIcon({
     className: "map-pin",
     html: `<span></span>`,
     iconSize: [14, 14],
     iconAnchor: [7, 7],
   });
 
-  const areas = [
-    { name: "Delray Beach", coords: [26.4615, -80.0728], price: "$650K median", url: "delray-beach.html" },
-    { name: "Boca Raton",   coords: [26.3683, -80.1289], price: "$850K median", url: "boca-raton.html" },
-    { name: "Boynton Beach",coords: [26.5317, -80.0905], price: "$430K median", url: "boynton-beach.html" },
-    { name: "Gulf Stream",  coords: [26.5038, -80.0481], price: "$3M+ typical", url: "gulf-stream.html" },
-    { name: "Highland Beach",coords:[26.4087, -80.0723], price: "$700K median", url: "highland-beach.html" },
-    { name: "Palm Beach County", coords: [26.7153, -80.0534], price: "County-wide", url: "palm-beach-county.html" },
-    { name: "Lake Worth Beach", coords: [26.6198, -80.0590], price: "~$380K median", url: "lake-worth.html" },
-    { name: "Wellington",       coords: [26.6590, -80.2689], price: "~$550K median", url: "wellington.html" },
-    { name: "Jupiter",          coords: [26.9342, -80.0942], price: "~$650K median", url: "jupiter.html" },
+  const hoodPinIcon = L.divIcon({
+    className: "map-pin map-pin--hood",
+    html: `<span></span>`,
+    iconSize: [9, 9],
+    iconAnchor: [4, 4],
+  });
+
+  const cities = [
+    { name: "Delray Beach",      coords: [26.4615, -80.0728], price: "$650K median",  url: "delray-beach.html" },
+    { name: "Boca Raton",        coords: [26.3683, -80.1289], price: "$850K median",  url: "boca-raton.html" },
+    { name: "Boynton Beach",     coords: [26.5317, -80.0905], price: "$430K median",  url: "boynton-beach.html" },
+    { name: "Gulf Stream",       coords: [26.5038, -80.0481], price: "$3M+ typical",  url: "gulf-stream.html" },
+    { name: "Highland Beach",    coords: [26.4087, -80.0723], price: "$700K median",  url: "highland-beach.html" },
+    { name: "Palm Beach County", coords: [26.7153, -80.0534], price: "County-wide",   url: "palm-beach-county.html" },
+    { name: "Lake Worth Beach",  coords: [26.6198, -80.0590], price: "~$380K median", url: "lake-worth.html" },
+    { name: "Wellington",        coords: [26.6590, -80.2689], price: "~$550K median", url: "wellington.html" },
+    { name: "Jupiter",           coords: [26.9342, -80.0942], price: "~$650K median", url: "jupiter.html" },
   ];
 
-  areas.forEach(({ name, coords, price, url }) => {
-    const marker = L.marker(coords, { icon: pinIcon }).addTo(map);
+  const neighborhoods = [
+    // Delray Beach
+    { name: "Atlantic Avenue",         coords: [26.4609, -80.0645], type: "Downtown · Walkable",    price: "$500K–$2M",   url: "delray-beach.html", desc: "The heart of Delray — restaurants, galleries, nightlife steps from the beach." },
+    { name: "Pineapple Grove",         coords: [26.4660, -80.0652], type: "Arts District",           price: "$350K–$900K", url: "delray-beach.html", desc: "Arts and gallery district just north of Atlantic Ave. Great value close to downtown." },
+    { name: "Kings Point",             coords: [26.4445, -80.1234], type: "55+ Community",           price: "$150K–$350K", url: "55-plus.html",      desc: "One of South Florida's largest active adult communities. Extensive amenities, shuttle service." },
+    { name: "Tropic Isle",             coords: [26.4298, -80.0812], type: "Waterfront · Deepwater",  price: "$1M–$3M+",   url: "delray-beach.html", desc: "Deepwater lots with dock access to the Intracoastal. Mostly single-family." },
+    { name: "Lake Ida",                coords: [26.4750, -80.0889], type: "Single-Family · Lakefront",price: "$600K–$1.8M",url: "delray-beach.html", desc: "Quiet lakefront neighborhood with mature trees and easy access to downtown." },
+    { name: "High Point",              coords: [26.4489, -80.1132], type: "55+ Community",           price: "$120K–$280K", url: "55-plus.html",      desc: "Established active adult community with pools, tennis, and low HOA fees." },
+    // Boca Raton
+    { name: "Mizner Park",             coords: [26.3575, -80.0843], type: "Downtown · Walkable",     price: "$500K–$2M",   url: "boca-raton.html",   desc: "Boca's upscale open-air center. Condos and townhomes above shops and restaurants." },
+    { name: "Boca West",               coords: [26.3836, -80.1758], type: "Golf · Gated",            price: "$300K–$1.5M", url: "boca-raton.html",   desc: "Private country club with four golf courses. One of the largest clubs in the country." },
+    { name: "Royal Palm Yacht Club",   coords: [26.3390, -80.0810], type: "Waterfront · Yachting",   price: "$2M–$15M+",  url: "boca-raton.html",   desc: "Exclusive deepwater yachting community in East Boca. Some of the best dockage in the county." },
+    { name: "East Boca Beachside",     coords: [26.3590, -80.0683], type: "Oceanfront · Condos",     price: "$600K–$3M+", url: "boca-raton.html",   desc: "High-rise condos with direct Atlantic access between Palmetto Park and Spanish River." },
+    { name: "Broken Sound",            coords: [26.3986, -80.1539], type: "Golf · Country Club",     price: "$350K–$1.8M", url: "boca-raton.html",   desc: "Established private golf community with 36 holes and strong social programming." },
+    // Boynton Beach
+    { name: "Downtown Boynton",        coords: [26.5318, -80.0597], type: "Downtown · Emerging",     price: "$250K–$600K", url: "boynton-beach.html",desc: "Renovated marina, new restaurants, and value condos steps from the Intracoastal." },
+    { name: "Quail Ridge",             coords: [26.5518, -80.1563], type: "Golf · 55+",              price: "$200K–$600K", url: "55-plus.html",      desc: "Private golf and country club with 36 holes. Active adult-leaning community." },
+    { name: "Valencia Isles",          coords: [26.5628, -80.1887], type: "55+ · Upscale",           price: "$450K–$900K", url: "55-plus.html",      desc: "GL Homes' upscale active adult product. Resort amenities, newer construction." },
+    // Lake Worth Beach
+    { name: "Downtown Lake Worth",     coords: [26.6141, -80.0627], type: "Arts · Walkable",         price: "$200K–$600K", url: "lake-worth.html",   desc: "Real walkable downtown with independent restaurants, galleries, and diverse housing." },
+    { name: "College Park",            coords: [26.6244, -80.0784], type: "Residential · Value",     price: "$180K–$450K", url: "lake-worth.html",   desc: "Quiet tree-lined streets, older homes with character, best dollar-per-sqft in the area." },
+    // Wellington
+    { name: "Palm Beach Polo Club",    coords: [26.6410, -80.2494], type: "Equestrian · Polo",       price: "$500K–$5M+", url: "wellington.html",   desc: "World-class polo grounds. Equestrian estates, high-end residences surrounding the fields." },
+    { name: "Versailles",              coords: [26.6726, -80.2949], type: "Gated · Luxury",          price: "$700K–$2M+", url: "wellington.html",   desc: "Upscale gated community with large lots and a Mediterranean aesthetic." },
+    { name: "Binks Forest",            coords: [26.7032, -80.2565], type: "Golf · Equestrian",       price: "$400K–$1.2M", url: "wellington.html",   desc: "Golf and equestrian community. Spacious lots, mature landscaping, quieter feel." },
+    // Jupiter
+    { name: "Abacoa",                  coords: [26.9001, -80.1113], type: "Master-Planned · Schools",price: "$400K–$1.2M", url: "jupiter.html",      desc: "Town-center design with walkable streets, great schools, and a strong community feel." },
+    { name: "Admirals Cove",           coords: [26.9150, -80.1060], type: "Waterfront · Gated",      price: "$1.5M–$8M+", url: "jupiter.html",      desc: "Private gated yachting community with deepwater dockage. One of Jupiter's finest." },
+    { name: "Tequesta",                coords: [26.9684, -80.1016], type: "Village · Waterway",      price: "$350K–$1.5M", url: "jupiter.html",      desc: "Quiet village feel at the county's northern tip. Waterway access, older homes, low-key." },
+    { name: "Jupiter Farms",           coords: [26.9293, -80.1620], type: "Rural · Acreage",         price: "$400K–$1.2M", url: "jupiter.html",      desc: "Rural lots where horses are welcome. The most space for the money in northern PBC." },
+    // Gulf Stream
+    { name: "Ocean Blvd (A1A)",        coords: [26.5038, -80.0481], type: "Oceanfront · Estates",    price: "$4M–$20M+",  url: "gulf-stream.html",  desc: "The most coveted street in Gulf Stream. Direct Atlantic frontage, estate lots." },
+    { name: "Polo Drive",              coords: [26.5010, -80.0530], type: "Intracoastal · Dockage",   price: "$2M–$8M+",   url: "gulf-stream.html",  desc: "Intracoastal side with deepwater dockage and sunset views. More value than the ocean side." },
+    // Highland Beach
+    { name: "Toscana",                 coords: [26.4250, -80.0718], type: "Oceanfront · High-Rise",  price: "$700K–$3M+", url: "highland-beach.html",desc: "Luxury oceanfront tower with resort amenities and full concierge service." },
+    { name: "Byrd Beach Club",         coords: [26.4180, -80.0720], type: "Oceanfront · Mid-Rise",   price: "$500K–$1.5M", url: "highland-beach.html",desc: "Boutique mid-rise with direct beach access and a tight-knit community feel." },
+  ];
+
+  const cityLayer = L.layerGroup().addTo(map);
+  const hoodLayer = L.layerGroup();
+
+  cities.forEach(({ name, coords, price, url }) => {
+    const marker = L.marker(coords, { icon: cityPinIcon }).addTo(cityLayer);
     marker.bindPopup(
       `<div class="map-popup">
         <strong>${name}</strong>
@@ -374,4 +422,40 @@ if (mapEl && typeof L !== "undefined") {
     );
     marker.on("mouseover", () => marker.openPopup());
   });
+
+  neighborhoods.forEach(({ name, coords, type, price, url, desc }) => {
+    const marker = L.marker(coords, { icon: hoodPinIcon }).addTo(hoodLayer);
+    marker.bindPopup(
+      `<div class="map-popup map-popup--hood">
+        <strong>${name}</strong>
+        <em>${type}</em>
+        <span>${price}</span>
+        <p>${desc}</p>
+        <a href="${url}">View area guide →</a>
+      </div>`,
+      { closeButton: false, offset: [0, -4], maxWidth: 220 }
+    );
+    marker.on("mouseover", () => marker.openPopup());
+  });
+
+  const zoomHint = L.control({ position: "bottomleft" });
+  zoomHint.onAdd = () => {
+    const div = L.DomUtil.create("div", "map-zoom-hint");
+    div.innerHTML = "Zoom in to explore neighborhoods";
+    return div;
+  };
+  zoomHint.addTo(map);
+
+  const updateHoodLayer = () => {
+    if (map.getZoom() >= 11) {
+      if (!map.hasLayer(hoodLayer)) hoodLayer.addTo(map);
+      zoomHint._container && (zoomHint._container.style.opacity = "0");
+    } else {
+      if (map.hasLayer(hoodLayer)) map.removeLayer(hoodLayer);
+      zoomHint._container && (zoomHint._container.style.opacity = "1");
+    }
+  };
+
+  map.on("zoomend", updateHoodLayer);
+  updateHoodLayer();
 }
