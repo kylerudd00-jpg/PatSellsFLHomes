@@ -791,17 +791,87 @@ h3 {
   border-bottom: 1px solid var(--line);
 }
 
-.testimonials-grid {
-  display: grid;
-  gap: clamp(20px, 3vw, 36px);
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 40px;
+.testimonials-carousel {
+  margin: 40px auto 0;
+  max-width: 640px;
+}
+
+.testimonials-track {
+  min-height: 220px;
+  position: relative;
 }
 
 .testimonial-card {
   border-left: 2px solid var(--brass);
+  left: 0;
   margin: 0;
+  opacity: 0;
   padding: 6px 0 6px 24px;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 450ms ease;
+}
+
+.testimonial-card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+.testimonials-controls {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.tc-btn {
+  align-items: center;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  padding: 0;
+  transition: border-color 150ms ease, color 150ms ease;
+  width: 36px;
+}
+
+.tc-btn:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+
+.tc-btn svg {
+  height: 16px;
+  width: 16px;
+}
+
+.tc-dots {
+  display: flex;
+  gap: 9px;
+}
+
+.tc-dot {
+  background: var(--line);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 8px;
+  padding: 0;
+  transition: background 200ms ease, transform 200ms ease;
+  width: 8px;
+}
+
+.tc-dot.is-active {
+  background: var(--brass);
+  transform: scale(1.35);
 }
 
 .testimonial-stars {

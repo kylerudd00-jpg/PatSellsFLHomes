@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", () => {
     ".section h2",
     ".intro-copy p",
     ".feature-copy p",
-    ".testimonial-card",
+    ".testimonials-carousel",
     ".service-card",
     ".lifestyle-card",
     ".process-grid article",
@@ -288,6 +288,33 @@ const requestScrollUpdate = () => {
 window.addEventListener("scroll", requestScrollUpdate, { passive: true });
 window.addEventListener("resize", requestScrollUpdate);
 requestScrollUpdate();
+
+// Testimonials carousel
+const tcEl = document.getElementById("testimonials-carousel");
+if (tcEl) {
+  const cards = [...tcEl.querySelectorAll(".testimonial-card")];
+  const dots = [...tcEl.querySelectorAll(".tc-dot")];
+  let current = 0;
+  let timer;
+
+  const goTo = (index) => {
+    cards[current].classList.remove("is-active");
+    dots[current].classList.remove("is-active");
+    dots[current].setAttribute("aria-selected", "false");
+    current = (index + cards.length) % cards.length;
+    cards[current].classList.add("is-active");
+    dots[current].classList.add("is-active");
+    dots[current].setAttribute("aria-selected", "true");
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 5500);
+  };
+
+  tcEl.querySelector(".tc-prev").addEventListener("click", () => goTo(current - 1));
+  tcEl.querySelector(".tc-next").addEventListener("click", () => goTo(current + 1));
+  dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
+
+  timer = setInterval(() => goTo(current + 1), 5500);
+}
 
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/patsellsflhomes@gmail.com";
 const valuationForm = document.getElementById("valuation-form");
