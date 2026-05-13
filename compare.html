@@ -230,6 +230,56 @@
         .compare-vs { display: none; }
         .compare-guide-links { grid-template-columns: 1fr; }
         .compare-pat-note { flex-direction: column; }
+        .compare-photos { height: 130px; }
+      }
+
+      @media (max-width: 560px) {
+        .compare-header { padding-top: clamp(80px, 18vw, 110px); }
+        .compare-header h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+
+        /* Flatten table: label spans full width, values sit side-by-side below */
+        .compare-table thead th.compare-row-label { display: none; }
+        .compare-table thead tr {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .compare-table thead th {
+          font-size: 0.95rem;
+          padding: 12px 10px;
+        }
+
+        .compare-table tbody tr {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto;
+        }
+        .compare-table tr:nth-child(even) td,
+        .compare-table tr:nth-child(even) td.compare-row-label { background: transparent; }
+
+        .compare-table td.compare-row-label {
+          background: var(--ink);
+          color: rgba(255,255,255,0.65);
+          font-size: 0.65rem;
+          grid-column: 1 / -1;
+          padding: 7px 12px;
+          text-align: left;
+        }
+        .compare-table tbody tr:nth-child(odd) td.compare-row-label { background: var(--ink); }
+        .compare-table tbody tr:nth-child(even) td.compare-row-label { background: #2a2a2a; }
+
+        .compare-table td:not(.compare-row-label) {
+          border-bottom: none;
+          font-size: 0.82rem;
+          padding: 9px 12px;
+          text-align: left;
+        }
+        .compare-table tbody tr:nth-child(odd) td:not(.compare-row-label) { background: var(--surface); }
+        .compare-table tbody tr:nth-child(even) td:not(.compare-row-label) { background: var(--mist); }
+
+        .compare-table tbody tr:not(:last-child) td:not(.compare-row-label) {
+          border-bottom: 1px solid var(--line);
+        }
+        .compare-table tbody tr:last-child td { border-bottom: 0; }
       }
     </style>
 
