@@ -648,7 +648,7 @@ h3 {
 .section {
   margin: 0 auto;
   max-width: 1240px;
-  padding: clamp(48px, 6vw, 80px) 30px;
+  padding: clamp(36px, 4.5vw, 56px) 30px;
 }
 
 .intro-section {
@@ -829,7 +829,7 @@ h3 {
 }
 
 .testimonials-carousel {
-  margin: 40px auto 0;
+  margin: 24px auto 0;
   max-width: 640px;
 }
 
@@ -1616,8 +1616,8 @@ h3 {
   background: var(--paper);
   clip-path: polygon(0 28px, 100% 0, 100% 100%, 0 100%);
   color: var(--ink);
-  padding: clamp(48px, 7vw, 80px) 30px;
-  padding-top: calc(clamp(48px, 7vw, 80px) + 28px);
+  padding: clamp(36px, 4.5vw, 56px) 30px;
+  padding-top: calc(clamp(36px, 4.5vw, 56px) + 28px);
 }
 
 .contact-inner {
