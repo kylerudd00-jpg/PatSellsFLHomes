@@ -22,4 +22,4 @@ The page still images are exported frames from that local-market video reel.
 
 ## Headshot
 
-Save Pat's real headshot as `assets/pat-magno.jpg`. The site has a branded fallback in place until that file is added.
+The site currently uses a branded `PM` placeholder in the Meet Pat section. When Pat's real headshot is ready, replace the placeholder `advisor-photo` block in `index.html` with an image that points to the final asset.
