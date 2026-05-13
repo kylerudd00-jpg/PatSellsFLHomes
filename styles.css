@@ -1281,9 +1281,10 @@ h3 {
 
 .listings-grid {
   display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
   margin-top: clamp(28px, 3vw, 44px);
+  max-width: 860px;
 }
 
 .listing-card {
@@ -1909,5 +1910,444 @@ h3 {
     clip-path: none;
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ─── Hero sub-CTA ─── */
+
+.hero-sub-cta {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.82rem;
+  margin-top: 14px;
+}
+
+.hero-sub-cta a {
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hero-sub-cta a:hover {
+  color: white;
+}
+
+/* ─── Specialty list links ─── */
+
+.specialty-list a {
+  color: white;
+  text-decoration: none;
+}
+
+.specialty-list li:has(a):hover {
+  background: var(--evergreen);
+}
+
+/* ─── Listing card additions ─── */
+
+.listing-card-img {
+  position: relative;
+}
+
+.listing-badge {
+  background: var(--evergreen);
+  border-radius: 2px;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 800;
+  left: 12px;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 12px;
+}
+
+.listing-price {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 2.2vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.listing-specs {
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  font-weight: 600;
+  gap: 10px;
+}
+
+.listing-specs span {
+  align-items: center;
+  display: inline-flex;
+  gap: 4px;
+}
+
+.listing-specs svg {
+  height: 13px;
+  opacity: 0.7;
+  width: 13px;
+}
+
+.listing-address {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 4px 0 0;
+}
+
+.listing-mls {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.listings-footer a {
+  align-items: center;
+  color: var(--evergreen);
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 800;
+  gap: 6px;
+  letter-spacing: 0.02em;
+}
+
+.listings-footer a svg {
+  height: 14px;
+  transition: transform 200ms ease;
+  width: 14px;
+}
+
+.listings-footer a:hover svg {
+  transform: translateX(4px);
+}
+
+/* ─── Buyer / Seller / Specialty page styles ─── */
+
+.path-hero {
+  align-items: flex-end;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  min-height: 52vh;
+  padding: clamp(80px, 10vw, 130px) clamp(20px, 5vw, 80px) clamp(40px, 6vw, 70px);
+  position: relative;
+}
+
+.path-hero::before {
+  background: linear-gradient(0deg, rgba(8,14,13,0.78) 0%, rgba(8,14,13,0.28) 60%, rgba(8,14,13,0.1) 100%);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.path-hero-content {
+  color: white;
+  max-width: 860px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.path-hero-content .eyebrow {
+  color: rgba(255,255,255,0.7);
+}
+
+.path-hero-content h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.path-hero-content p {
+  color: rgba(255,255,255,0.82);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  max-width: 580px;
+}
+
+.path-body {
+  margin: 0 auto;
+  max-width: 1240px;
+  padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 80px);
+}
+
+.path-back {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 0.8rem;
+  font-weight: 700;
+  gap: 6px;
+  letter-spacing: 0.06em;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  transition: color 200ms ease;
+}
+
+.path-back:hover { color: var(--ink); }
+.path-back svg { height: 14px; width: 14px; }
+
+.path-section {
+  border-top: 1px solid var(--line);
+  margin-bottom: clamp(40px, 6vw, 64px);
+  padding-top: clamp(32px, 4vw, 48px);
+}
+
+.path-section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.path-section-label {
+  color: var(--brass);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.path-section h2 {
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.path-section p {
+  color: var(--muted);
+  max-width: 680px;
+}
+
+.steps-grid {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+.step-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: clamp(20px, 3vw, 32px);
+}
+
+.step-number {
+  color: var(--brass);
+  font-family: var(--display);
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.step-item h3 {
+  margin-bottom: 8px;
+}
+
+.step-item p {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.mortgage-calc {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: clamp(24px, 3vw, 36px);
+  max-width: 700px;
+  padding: clamp(24px, 3vw, 36px);
+}
+
+.mortgage-calc label {
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  font-weight: 700;
+  gap: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mortgage-calc input {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--ink);
+  font-size: 1rem;
+  min-height: 42px;
+  padding: 0 12px;
+  width: 100%;
+}
+
+.mortgage-calc input:focus {
+  border-color: var(--evergreen);
+  outline: none;
+}
+
+.mortgage-result {
+  grid-column: 1 / -1;
+}
+
+.mortgage-result-value {
+  color: var(--evergreen);
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.mortgage-result-label {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 4px;
+}
+
+.community-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+.community-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: clamp(20px, 2.5vw, 28px);
+  transition: box-shadow 240ms ease, transform 240ms ease;
+}
+
+.community-card:hover {
+  box-shadow: 0 8px 28px rgba(17,22,20,0.09);
+  transform: translateY(-3px);
+}
+
+.community-card h3 {
+  margin-bottom: 6px;
+}
+
+.community-card p {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: clamp(24px, 3vw, 36px);
+  max-width: 760px;
+}
+
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 700;
+  list-style: none;
+  padding: 16px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item p {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 14px 20px 18px;
+}
+
+.path-cta {
+  background: var(--evergreen);
+  border-radius: 6px;
+  color: white;
+  margin-top: clamp(40px, 6vw, 64px);
+  padding: clamp(32px, 4vw, 52px);
+  text-align: center;
+}
+
+.path-cta h2 {
+  color: white;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.path-cta p {
+  color: rgba(255,255,255,0.78);
+  margin: 0 auto clamp(20px, 3vw, 28px);
+  max-width: 520px;
+}
+
+.path-cta-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.path-cta .button-primary {
+  background: white;
+  color: var(--evergreen);
+}
+
+.path-cta .button-secondary {
+  border-color: rgba(255,255,255,0.4);
+  color: white;
+}
+
+@media (max-width: 860px) {
+  .listings-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+  }
+
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mortgage-calc {
+    grid-template-columns: 1fr;
+  }
+
+  .community-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .path-hero-content h1 {
+    font-size: 2rem;
   }
 }

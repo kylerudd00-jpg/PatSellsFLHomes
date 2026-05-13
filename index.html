@@ -32,6 +32,45 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
     <script src="script.js" defer></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Patricia Magno",
+      "url": "https://patsellsflhomes.com",
+      "telephone": "+15612664444",
+      "image": "https://patsellsflhomes.com/assets/patforweb.jpg",
+      "description": "South Florida real estate agent specializing in Delray Beach, Boca Raton, and Palm Beach County. Certified Senior Real Estate Specialist and Relocation Specialist with 20+ years experience.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1185 E Atlantic Ave",
+        "addressLocality": "Delray Beach",
+        "addressRegion": "FL",
+        "postalCode": "33483",
+        "addressCountry": "US"
+      },
+      "geo": {"@type": "GeoCoordinates", "latitude": 26.4615, "longitude": -80.0728},
+      "areaServed": [
+        {"@type": "City", "name": "Delray Beach"},
+        {"@type": "City", "name": "Boca Raton"},
+        {"@type": "City", "name": "Boynton Beach"},
+        {"@type": "City", "name": "Lake Worth Beach"},
+        {"@type": "City", "name": "Jupiter"},
+        {"@type": "City", "name": "Wellington"},
+        {"@type": "City", "name": "Highland Beach"},
+        {"@type": "City", "name": "Gulf Stream"},
+        {"@type": "AdministrativeArea", "name": "Palm Beach County"}
+      ],
+      "hasCredential": ["Certified Senior Real Estate Specialist (CSRES)", "Certified Pricing Strategy Advisor (CPSA)", "Certified Real Estate Negotiator (CREN)"],
+      "memberOf": {"@type": "Organization", "name": "Coldwell Banker Realty"},
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5", "bestRating": "5", "reviewCount": "3"},
+      "review": [
+        {"@type": "Review", "author": {"@type": "Person", "name": "Marie"}, "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "reviewBody": "Working with Pat was an absolute pleasure. Her knowledge and insights into the real estate market gave us confidence with the sale of our home. She went above and beyond, making the process smooth and stress-free."},
+        {"@type": "Review", "author": {"@type": "Person", "name": "Carol"}, "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "reviewBody": "We had limited availability to house hunt and she took the time to listen to our wants and needs, and put a plan together to maximize our time. Pat walked me through the offer, inspection, and all the way to a fast closing."},
+        {"@type": "Review", "author": {"@type": "Person", "name": "Alex & Tanya"}, "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "reviewBody": "Pat helped make our relocation to Florida possible. Without her guidance we would never have been able to navigate the neighborhoods and developments we came across. We cannot recommend her enough."}
+      ]
+    }
+    </script>
   </head>
   <body>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -59,8 +98,8 @@
 
         <div class="nav-menu" id="primary-menu">
           <a href="#about">About</a>
-          <a href="#areas">Buy</a>
-          <a href="#valuation">Sell</a>
+          <a href="buyer.html">Buy</a>
+          <a href="seller.html">Sell</a>
           <a href="#areas">Areas</a>
           <a href="#contact">Contact</a>
         </div>
@@ -101,22 +140,25 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <div class="hero-main">
-            <p class="eyebrow">Pat Magno · Coldwell Banker Realty · Delray Beach, FL</p>
+            <p class="eyebrow">Senior &amp; Relocation Specialist · Coldwell Banker Realty · Delray Beach</p>
             <h1>Buy or sell with someone who knows this market.</h1>
             <p class="hero-copy">
               20+ years in Delray Beach, Boca Raton, and Palm Beach County.
               Straight answers, no pressure, and a clear plan from first call to closing.
             </p>
             <div class="hero-actions" aria-label="Primary actions">
-              <a class="button button-primary" href="https://calendly.com/patsellsflhomes" target="_blank" rel="noreferrer">
-                <i data-lucide="calendar-check"></i>
-                Schedule a Consultation
+              <a class="button button-primary" href="buyer.html">
+                <i data-lucide="search"></i>
+                I'm buying
               </a>
-              <a class="button button-secondary" href="mailto:patricia.magno@cbrealty.com">
-                <i data-lucide="mail"></i>
-                Email Pat
+              <a class="button button-secondary" href="seller.html">
+                <i data-lucide="tag"></i>
+                I'm selling
               </a>
             </div>
+            <p class="hero-sub-cta">
+              or <a href="https://calendly.com/patsellsflhomes" target="_blank" rel="noreferrer">schedule a call</a> · <a href="tel:+15612664444">(561) 266-4444</a>
+            </p>
           </div>
         </div>
       </section>
@@ -124,10 +166,56 @@
 
 <div class="listing-strip">
         <span><i data-lucide="circle-dot"></i> Active in the market</span>
-        <a href="https://www.zillow.com/agent-profile/patriciamagnorealtor" target="_blank" rel="noreferrer">
+        <a href="https://www.coldwellbanker.com/for-sale/real-estate-agents/Patricia-Magno-3436662" target="_blank" rel="noreferrer">
           View Pat's current listings <i data-lucide="arrow-right"></i>
         </a>
       </div>
+
+      <section class="section listings-section" id="listings" aria-label="Current listings">
+        <div class="section-heading">
+          <p class="section-kicker">Current Listings</p>
+          <h2>Homes Pat is selling now.</h2>
+        </div>
+        <div class="listings-grid">
+          <a class="listing-card" href="https://www.coldwellbanker.com/for-sale/7770-Tahiti-Lane-306-Lake-Worth-FL-33467/pid_R11137537" target="_blank" rel="noreferrer">
+            <div class="listing-card-img" style="background-image: url('assets/area-lake-worth.jpg')">
+              <span class="listing-badge">Active</span>
+            </div>
+            <div class="listing-card-body">
+              <div class="listing-price">$128,000</div>
+              <div class="listing-specs">
+                <span><i data-lucide="bed-double"></i> 2 beds</span>
+                <span><i data-lucide="bath"></i> 2 baths</span>
+                <span><i data-lucide="ruler"></i> 1,200 sqft</span>
+                <span><i data-lucide="building-2"></i> Condo</span>
+              </div>
+              <p class="listing-address">7770 Tahiti Lane #306<br>Lake Worth, FL 33467</p>
+              <span class="listing-mls">MLS# R11137537</span>
+            </div>
+          </a>
+          <a class="listing-card" href="https://www.coldwellbanker.com/for-sale/6272-S-Military-Trail-206-Lake-Worth-FL-33463/pid_R11117713" target="_blank" rel="noreferrer">
+            <div class="listing-card-img" style="background-image: url('assets/area-lake-worth.jpg')">
+              <span class="listing-badge">Active</span>
+            </div>
+            <div class="listing-card-body">
+              <div class="listing-price">$374,900</div>
+              <div class="listing-specs">
+                <span><i data-lucide="bed-double"></i> 3 beds</span>
+                <span><i data-lucide="bath"></i> 3 baths</span>
+                <span><i data-lucide="ruler"></i> 1,668 sqft</span>
+                <span><i data-lucide="home"></i> Townhouse</span>
+              </div>
+              <p class="listing-address">6272 S Military Trail #206<br>Lake Worth, FL 33463</p>
+              <span class="listing-mls">MLS# R11117713</span>
+            </div>
+          </a>
+        </div>
+        <p class="listings-footer">
+          <a href="https://www.coldwellbanker.com/for-sale/real-estate-agents/Patricia-Magno-3436662" target="_blank" rel="noreferrer">
+            See all of Pat's listings on Coldwell Banker <i data-lucide="arrow-right"></i>
+          </a>
+        </p>
+      </section>
 
       <section class="stats-bar" aria-label="Pat Magno at a glance">
         <div class="stats-inner">
@@ -169,9 +257,10 @@
               Pat keeps things clear and moves at your pace.
             </p>
             <ul class="specialty-list">
-              <li>Buyers &amp; Sellers Agent</li>
-              <li>Relocation Specialist</li>
-              <li>Senior 55+ Specialist</li>
+              <li><a href="buyer.html">Buyers Agent</a></li>
+              <li><a href="seller.html">Sellers Agent</a></li>
+              <li><a href="relocating.html">Relocation Specialist</a></li>
+              <li><a href="55-plus.html">Senior 55+ Specialist</a></li>
             </ul>
             <ul class="cert-list">
               <li>Certified Senior Real Estate Specialist (CSRES)</li>
