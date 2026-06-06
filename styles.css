@@ -1515,9 +1515,9 @@ h3 {
 .listings-grid {
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin-top: clamp(28px, 3vw, 44px);
-  max-width: 860px;
+  max-width: 1240px;
 }
 
 .listing-card {
@@ -1530,6 +1530,11 @@ h3 {
   transition: transform 260ms ease, box-shadow 260ms ease;
   display: flex;
   flex-direction: column;
+}
+
+.listing-card:focus-visible {
+  outline: 3px solid var(--evergreen);
+  outline-offset: 2px;
 }
 
 .listing-card:hover {
@@ -1710,11 +1715,14 @@ h3 {
   transition: opacity 300ms ease;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1080px) {
   .listings-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 860px;
   }
+}
 
+@media (max-width: 980px) {
   #areas-map {
     height: 320px;
   }
@@ -2858,11 +2866,6 @@ h3 {
 }
 
 @media (max-width: 860px) {
-  .listings-grid {
-    grid-template-columns: 1fr;
-    max-width: 460px;
-  }
-
   .steps-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2873,6 +2876,13 @@ h3 {
 
   .community-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 660px) {
+  .listings-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
   }
 }
 
