@@ -1537,6 +1537,26 @@ h3 {
   outline-offset: 2px;
 }
 
+/* Center stranded last card(s) in 3-col grid when count isn't a multiple of 3 */
+.listings-grid > .listing-card:last-child:nth-child(3n + 1) {
+  grid-column-start: 2;
+}
+.listings-grid > .listing-card:nth-last-child(2):nth-child(3n + 1) {
+  grid-column-start: 1;
+}
+@media (max-width: 1080px) {
+  .listings-grid > .listing-card:last-child:nth-child(3n + 1),
+  .listings-grid > .listing-card:nth-last-child(2):nth-child(3n + 1) {
+    grid-column-start: auto;
+  }
+}
+
+/* Muted badge for sold listings */
+.listing-card[data-status="sold"] .listing-badge {
+  background: #6b6f6c;
+  color: #fff;
+}
+
 .listing-card:hover {
   box-shadow: 0 10px 32px rgba(0,0,0,0.10);
   transform: translateY(-3px);
