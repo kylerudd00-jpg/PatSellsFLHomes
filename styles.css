@@ -12,6 +12,7 @@
   --sea: #6f9994;
   --brass: #b89458;
   --clay: #9e6256;
+  --gold: #c8963e;
   --shadow: 0 24px 80px rgba(17, 22, 20, 0.13);
   --radius: 6px;
   --display: "Cormorant Garamond", Georgia, serif;
@@ -24,6 +25,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep anchor targets (#about, #areas, #contact) clear of the fixed header */
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -56,6 +59,21 @@ button,
 input,
 select {
   font: inherit;
+}
+
+/* Visible keyboard focus for every interactive element.
+   Dark outline + light halo stays legible on both paper and dark sections. */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9);
+}
+
+/* The glass nav clips overflow, so keep its focus ring inset and on-brand. */
+.nav-shell :focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: -3px;
+  box-shadow: none;
 }
 
 .skip-link {
@@ -271,10 +289,10 @@ select {
 .nav-menu a {
   border-radius: 999px;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  padding: 8px 12px;
+  padding: 8px 13px;
   position: relative;
   text-transform: uppercase;
   transition:
@@ -990,16 +1008,19 @@ h3 {
 
 .tc-dots {
   display: flex;
-  gap: 9px;
+  gap: 2px;
 }
 
+/* 8px dot kept visually, but 24px hit area for comfortable tapping (WCAG 2.5.8) */
 .tc-dot {
   background: var(--line);
+  background-clip: content-box;
   border: none;
   border-radius: 50%;
+  box-sizing: content-box;
   cursor: pointer;
   height: 8px;
-  padding: 0;
+  padding: 8px;
   transition: background 200ms ease, transform 200ms ease;
   width: 8px;
 }
@@ -1503,6 +1524,14 @@ h3 {
   background: rgba(158, 98, 86, 0.1);
   border-color: var(--clay);
   color: var(--clay);
+}
+
+.form-privacy {
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
 }
 
 /* ─── Listings section ─── */
